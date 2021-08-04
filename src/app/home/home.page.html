@@ -89,8 +89,8 @@
     <ion-row>
       <ion-col>  
         <ion-item *ngFor = "let q of reviewsQuestionsArray">
-          <ion-label >{{q.text}}</ion-label>
-          <ion-button slot="end" (click)="openEditModal()">Edit</ion-button>
+          <ion-label class="ion-text-wrap">{{q.text}}</ion-label>
+          <ion-button class="edit-btn" slot="end" (click)="openEditModal()">Edit</ion-button>
           <ion-button slot="end" (click)="deleteQuestion()">Delete</ion-button>
         </ion-item>
       </ion-col>
