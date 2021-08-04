@@ -9,7 +9,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col>
         <ion-item>
           <ion-label>Χρόνος ετοιμασίας/παράδοσης</ion-label>
@@ -85,15 +85,16 @@
           <ion-button slot="end">Delete</ion-button>
         </ion-item>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
     <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label>Θα ξαναπαραγγείλετε;</ion-label>
+      <ion-col>  
+        <ion-item *ngFor = "let q of reviewsQuestionsArray">
+          <ion-label >{{q.text}}</ion-label>
           <ion-button slot="end" (click)="openEditModal()">Edit</ion-button>
-          <ion-button slot="end">Delete</ion-button>
+          <ion-button slot="end" (click)="deleteQuestion()">Delete</ion-button>
         </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
+  
 </ion-content>

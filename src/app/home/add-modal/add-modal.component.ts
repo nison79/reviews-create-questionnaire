@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+
 import { ModalController } from '@ionic/angular';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-add-modal',
@@ -7,13 +9,18 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./add-modal.component.scss'],
 })
 export class AddModalComponent implements OnInit {
+  @Output() newQuestionEvent = new EventEmitter();
 
   constructor(private modalCtrl: ModalController) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  addNewQuestion(value: any) {
+    this.newQuestionEvent.emit(value);
+    console.log(value);
   }
 
-  closeModal(){
+  closeModal() {
     this.modalCtrl.dismiss();
   }
 }
