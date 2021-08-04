@@ -9,6 +9,7 @@ import { EditModalComponent } from './edit-modal/edit-modal.component';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  public reviewsQuestionsArray = [];
   constructor(private modalCtrl: ModalController) {}
 
   ngOnInit() {}
@@ -22,16 +23,12 @@ export class HomePage implements OnInit {
     await modal.present();
   }
 
-
   async openAddModal() {
     const modal = await this.modalCtrl.create({
       component: AddModalComponent,
-      animated:true,
-      componentProps: {
-
-      }
+      animated: true,
+      componentProps: {},
     });
     await modal.present();
   }
-
 }
