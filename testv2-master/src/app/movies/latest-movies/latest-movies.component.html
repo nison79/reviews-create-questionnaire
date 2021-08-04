@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="header-title">Latest Movies</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button class="bbtn"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item
+      *ngFor="let movie of loadedLatest.movies"
+      lines="none"
+      class="ion-no-margin"
+      (click)="openModal(movie.id)"
+    >
+      <ion-label class="title">{{ movie.title }}</ion-label>
+
+      <ion-avatar>
+        <ion-img [src]="permanentImgUrl + movie.poster_path"></ion-img>
+      </ion-avatar>
+    </ion-item>
+  </ion-list>
+</ion-content>

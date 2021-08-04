@@ -1,20 +1,97 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title slot="start" class="title">
+      ΔΗΜΙΟΥΡΓΙΑ ΕΡΩΤΗΜΑΤΟΛΟΓΙΟΥ
     </ion-title>
+    <ion-icon slot="end" name="add-circle" class="add-btn"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col sizeΜd="8" offsetMd="2">
+          <ion-item>
+            <ion-label>Χρόνος ετοιμασίας/παράδοσης</ion-label>
+            <ion-button slot="end" (click) = "openEditModal()">Edit</ion-button>
+            <ion-button slot="end">Delete</ion-button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col  sizeΜd="8" offsetMd="2">
+          <ion-item>
+            <ion-label>Γεύση</ion-label>
+            <ion-button slot="end">Edit</ion-button>
+            <ion-button slot="end">Delete</ion-button>
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col  sizeΜd="8" offsetMd="2">
+          <ion-item>
+            <ion-label>Τιμές</ion-label>
+            <ion-button slot="end">Edit</ion-button>
+            <ion-button slot="end">Delete</ion-button>
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col  sizeΜd="8" offsetMd="2">
+          <ion-item>
+            <ion-label>Ποιότητα</ion-label>
+            <ion-button slot="end">Edit</ion-button>
+            <ion-button slot="end">Delete</ion-button>
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col  sizeΜd="8" offsetMd="2">
+          <ion-item>
+            <ion-label>Εξυπηρέτηση</ion-label>
+            <ion-button slot="end">Edit</ion-button>
+            <ion-button slot="end">Delete</ion-button>
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col  sizeΜd="8" offsetMd="2">
+          <ion-item>
+            <ion-label>Εμπειρία online παραγγελίας</ion-label>
+            <ion-button slot="end">Edit</ion-button>
+            <ion-button slot="end">Delete</ion-button>
+          </ion-item> 
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col  sizeΜd="8" offsetMd="2">
+          <ion-item>
+            <ion-label  class="ion-text-wrap">Ποιό είναι το αδυνατό μας σημείο;</ion-label>
+            <ion-button slot="end">Edit</ion-button>
+            <ion-button slot="end">Delete</ion-button>
+            
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col  sizeΜd="8" offsetMd="2">
+          <ion-item>
+            <ion-label  class="ion-text-wrap">Σχόλια-Υποδείξεις-Προτάσεις</ion-label>
+            <ion-button slot="end">Edit</ion-button>
+            <ion-button slot="end">Delete</ion-button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Θα ξαναπαραγγείλετε;</ion-label>
+              <ion-button slot="end">Edit</ion-button>
+              <ion-button slot="end">Delete</ion-button>
+           
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 </ion-content>
