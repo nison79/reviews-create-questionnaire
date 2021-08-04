@@ -1,31 +1,37 @@
 import { AddModalComponent } from './add-modal/add-modal.component';
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { EditModalComponent } from './edit-modal/edit-modal.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
+export class HomePage implements OnInit {
+  constructor(private modalCtrl: ModalController) {}
 
-  constructor( private modalCtrl: ModalController) {}
+  ngOnInit() {}
+
+  async openEditModal() {
+    const modal = await this.modalCtrl.create({
+      component: EditModalComponent,
+      animated: true,
+      componentProps: {},
+    });
+    await modal.present();
+  }
 
 
-ngOnInit() {
+  async openAddModal() {
+    const modal = await this.modalCtrl.create({
+      component: AddModalComponent,
+      animated:true,
+      componentProps: {
 
-    }
+      }
+    });
+    await modal.present();
+  }
 
-
-    async openEditModal() {
-      const modal = await this.modalCtrl.create({
-        component: AddModalComponent,
-        animated: true,
-        componentProps: {
-        },
-      });
-      await modal.present();
-    }
 }
-
-
