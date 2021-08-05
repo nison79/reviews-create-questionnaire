@@ -11,9 +11,11 @@ import { EditModalComponent } from './edit-modal/edit-modal.component';
 export class HomePage implements OnInit {
   public reviewsQuestionsArray = [
     {
-      text: 'Ποιο ειναι το δυνατο μας σημειο;',
-      isRequired: true,
-      type: 'text',
+      id: '',
+      text: '',
+      numOfStars: '',
+      type: '',
+      required: true,
     },
   ];
   constructor(
@@ -22,7 +24,6 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {}
-
 
   deleteQuestion() {
     this.presentAlert();
@@ -35,7 +36,7 @@ export class HomePage implements OnInit {
       header: 'Προσοχή',
       subHeader: 'Subtitle',
       message: 'Είστε σίγουρος/η οτι θέλετε να διαγράψετε την ερώτηση',
-      buttons: ['Ναι' , 'Ακύρωση'],
+      buttons: ['Ναι', 'Ακύρωση'],
     });
 
     await alert.present();
@@ -58,6 +59,11 @@ export class HomePage implements OnInit {
       component: AddModalComponent,
       animated: true,
       componentProps: {},
+    });
+    modal.onDidDismiss().then((data: any) => {
+      this.reviewsQuestionsArray.push(data.data);
+      console.log(this.reviewsQuestionsArray);
+
     });
     await modal.present();
   }

@@ -28,17 +28,39 @@
           <ion-item>
             <ion-label position="floating">Επιλέξτε τύπο Ερώτησης</ion-label>
             <ion-select [(ngModel)]="question.type">
-              <ion-select-option value="radio"> radio </ion-select-option>
-              <ion-select-option value="keimeno"> keimeno </ion-select-option>
-              <ion-select-option value="stars"> asteria </ion-select-option>
+              <ion-select-option value="keimeno"> Κείμενο </ion-select-option>
+              <ion-select-option value="radio"
+                >'Ετοιμες Απαντήσεις</ion-select-option
+              >
+              <ion-select-option value="stars"
+                >Βαθμολογία με Αστέρια</ion-select-option
+              >
             </ion-select>
+          </ion-item>
+
+          <ion-item *ngIf="question.type === 'radio'">
+            <ion-label position="floating">Γράψε τις Απαντήσεις</ion-label>
+            <ion-input [(ngModel)]="answer"></ion-input>
+            <ion-button
+              [disabled]="!answer"
+              (click)="addAnswers()"
+              (click)="clearInput()"
+              fill="clear"
+              slot="end"
+              ><ion-icon slot="icon-only" name="add"></ion-icon
+            ></ion-button>
+          </ion-item>
+
+          <ion-item *ngFor="let ans of question.answers; let i = index">
+            <ion-label>{{ ans.text }}</ion-label>
+            <ion-button (click)="removeAnswer()"><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon></ion-button>
           </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col sizeSm="6" offsetSm="3">
-        <ion-button expand="block" color="primary">
+        <ion-button expand="block" color="primary" (click)="addQuestion()">
           Προσθηκη Ερωτησης
         </ion-button>
       </ion-col>
