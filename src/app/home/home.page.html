@@ -3,7 +3,7 @@
     <ion-title slot="start" class="ion-text-wrap">
       ΔΙΑΧΕΙΡΙΣΗ ΕΡΩΤΗΜΑΤΟΛΟΓΙΟΥ
     </ion-title>
-    <ion-icon slot="end" name="add-circle" class="add-btn" (click) ="openAddModal()"></ion-icon>
+    <ion-icon slot="end" name="add-circle" class=" ion-color-primary add-btn" (click) ="openAddModal()"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
@@ -91,6 +91,7 @@
         <ion-item *ngFor = "let q of reviewsQuestionsArray">
 
           <ion-label class="ion-text-wrap">{{q.text}}</ion-label>
+          <ion-label class="ion-text-wrap">{{q.type}}</ion-label>
           <ion-button class="edit-btn" slot="end" (click)="openEditModal()">Edit</ion-button>
           <ion-button slot="end" (click)="deleteQuestion()">Delete</ion-button>
         </ion-item>

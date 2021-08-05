@@ -15,7 +15,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col sizeSm="6" offsetSm="3">
+      <ion-col>
         <ion-list>
           <ion-item>
             <ion-label position="floating">Γράψτε την ερώτηση σας...</ion-label>
@@ -24,7 +24,10 @@
               type="text"
               name="text"
             ></ion-input>
+
+            <ion-checkbox color="primary" slot="end" [(ngModel)] = "question.required"></ion-checkbox>
           </ion-item>
+
           <ion-item>
             <ion-label position="floating">Επιλέξτε τύπο Ερώτησης</ion-label>
             <ion-select [(ngModel)]="question.type">
@@ -53,13 +56,15 @@
 
           <ion-item *ngFor="let ans of question.answers; let i = index">
             <ion-label>{{ ans.text }}</ion-label>
-            <ion-button (click)="removeAnswer()"><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon></ion-button>
+            <ion-button (click)="removeAnswer()"
+              ><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon
+            ></ion-button>
           </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col sizeSm="6" offsetSm="3">
+      <ion-col>
         <ion-button expand="block" color="primary" (click)="addQuestion()">
           Προσθηκη Ερωτησης
         </ion-button>
