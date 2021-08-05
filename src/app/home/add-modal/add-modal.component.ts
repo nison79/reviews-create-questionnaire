@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 import { ModalController } from '@ionic/angular';
 
@@ -11,14 +12,13 @@ export class AddModalComponent implements OnInit {
   public question = {
     id: '',
     text: '',
-    numOfStars: '',
     type: '',
     required: true,
     answers: [],
   };
   public answer;
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController , private translate: TranslateService) {}
 
   ngOnInit() {}
 

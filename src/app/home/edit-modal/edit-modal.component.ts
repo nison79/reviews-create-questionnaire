@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class EditModalComponent implements OnInit {
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController, private translate: TranslateService) { }
 
   ngOnInit() {
   }

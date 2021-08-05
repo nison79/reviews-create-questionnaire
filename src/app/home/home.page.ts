@@ -2,6 +2,7 @@ import { AddModalComponent } from './add-modal/add-modal.component';
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -13,14 +14,14 @@ export class HomePage implements OnInit {
     {
       id: '',
       text: '',
-      numOfStars: '',
       type: '',
       required: true,
     },
   ];
   constructor(
     private modalCtrl: ModalController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private translate: TranslateService
   ) {}
 
   ngOnInit() {}

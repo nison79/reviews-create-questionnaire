@@ -24,16 +24,24 @@
               type="text"
               name="text"
             ></ion-input>
-
-            <ion-checkbox color="primary" slot="end" [(ngModel)] = "question.required"></ion-checkbox>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              Υποχρεωτική ερώτηση
+              <ion-checkbox
+                color="primary"
+                slot="end"
+                [(ngModel)]="question.required"
+              ></ion-checkbox>
+            </ion-label>
           </ion-item>
 
           <ion-item>
-            <ion-label position="floating">Επιλέξτε τύπο Ερώτησης</ion-label>
+            <ion-label position="floating">Επιλέξτε τύπο </ion-label>
             <ion-select [(ngModel)]="question.type">
               <ion-select-option value="keimeno"> Κείμενο </ion-select-option>
               <ion-select-option value="radio"
-                >'Ετοιμες Απαντήσεις</ion-select-option
+                >Mονή επιλογή</ion-select-option
               >
               <ion-select-option value="stars"
                 >Βαθμολογία με Αστέρια</ion-select-option
