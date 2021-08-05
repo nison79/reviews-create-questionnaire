@@ -23,10 +23,6 @@ export class HomePage implements OnInit {
 
   ngOnInit() {}
 
-  addQuestion(newQuestion: any) {
-    this.reviewsQuestionsArray.push(newQuestion);
-    console.log(this.reviewsQuestionsArray);
-  }
 
   deleteQuestion() {
     this.presentAlert();

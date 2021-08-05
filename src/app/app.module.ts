@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home/home.page';
 import { AddModalComponent } from './home/add-modal/add-modal.component';
@@ -19,6 +20,7 @@ import { EditModalComponent } from './home/edit-modal/edit-modal.component';
     IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
+    CommonModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
