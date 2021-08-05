@@ -1,97 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title slot="start" class="ion-text-wrap">
-      ΔΙΑΧΕΙΡΙΣΗ ΕΡΩΤΗΜΑΤΟΛΟΓΙΟΥ
+      {{'reviews-create-questionnaire.questionnaire-management' | translate}}
     </ion-title>
-    <ion-icon slot="end" name="add-circle" class=" ion-color-primary add-btn" (click) ="openAddModal()"></ion-icon>
+    <ion-icon
+      slot="end"
+      name="add-circle"
+      class="ion-color-primary add-btn"
+      (click)="openAddModal()"
+    ></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <!-- <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label>Χρόνος ετοιμασίας/παράδοσης</ion-label>
-          <ion-button slot="end" (click)="openEditModal()">Edit</ion-button>
-          <ion-button slot="end">Delete</ion-button>
-        </ion-item>
-      </ion-col>
-    </ion-row>
     <ion-row>
       <ion-col>
-        <ion-item>
-          <ion-label>Γεύση</ion-label>
-          <ion-button slot="end" (click)="openEditModal()">Edit</ion-button>
-          <ion-button slot="end">Delete</ion-button>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item>ΔΙΑΧΕΙΡΙΣΗ ΕΡΩΤΗΜΑΤΟΛΟΓΙΟΥ
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label>Ποιότητα</ion-label>
-          <ion-button slot="end" (click)="openEditModal()">Edit</ion-button>
-          <ion-button slot="end">Delete</ion-button>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label>Εξυπηρέτηση</ion-label>
-          <ion-button slot="end" (click)="openEditModal()">Edit</ion-button>
-          <ion-button slot="end">Delete</ion-button>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label>Εμπειρία online παραγγελίας</ion-label>
-          <ion-button slot="end" (click)="openEditModal()">Edit</ion-button>
-          <ion-button slot="end">Delete</ion-button>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label class="ion-text-wrap"
-            >Ποιό είναι το αδυνατό μας σημείο;</ion-label
-          >
-          <ion-button slot="end" (click)="openEditModal()">Edit</ion-button>
-          <ion-button slot="end">Delete</ion-button>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label class="ion-text-wrap"
-            >Σχόλια-Υποδείξεις-Προτάσεις</ion-label
-          >
-          <ion-button slot="end" (click)="openEditModal()">Edit</ion-button>
-          <ion-button slot="end">Delete</ion-button>
-        </ion-item>
-      </ion-col>
-    </ion-row> -->ΔΙΑΧΕΙΡΙΣΗ ΕΡΩΤΗΜΑΤΟΛΟΓΙΟΥ
-    <ion-row>
-      <ion-col >
-        <ion-item *ngFor = "let q of reviewsQuestionsArray">
-
+        <ion-item *ngFor="let q of reviewsQuestionsArray">
           <ion-label class="ion-text-wrap">{{q.text}}</ion-label>
           <ion-label class="ion-text-wrap">{{q.type}}</ion-label>
-          <ion-button class="edit-btn" slot="end" (click)="openEditModal()">Edit</ion-button>
-          <ion-button slot="end" (click)="deleteQuestion()">Delete</ion-button>
+          <ion-button title="{{'reviews-create-questionnaire.edit' }}" fill="clear" class="edit-btn" slot="end" (click)="openEditModal()"
+            ><ion-icon slot="icon-only" name="create-outline" ></ion-icon></ion-button
+          >
+          <ion-button fill="clear" slot="end" (click)="deleteQuestion()"><ion-icon name="trash" slot="icon-only"></ion-icon></ion-button>
         </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>

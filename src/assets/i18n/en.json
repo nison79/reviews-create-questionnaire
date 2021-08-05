@@ -1,9 +1,7 @@
 {
-  "ΔΙΑΧΕΙΡΙΣΗ ΕΡΩΤΗΜΑΤΟΛΟΓΙΟΥ" : "Questionnaire Management",
-  "Δημιουργία Ερώτησης": "Create Question",
-  "Γράψτε την ερώτηση σας": "Write your question",
-  "Υποχρεωτική ερώτηση": "Mandatory question",
-  "Επιλέξτε τύπο": "Select type",
-  "Προσθηκη Ερωτησης": "Add Question"
+  "reviews-create-questionnaire": {
+    "edit": "Edit",
+    "delete": "Delete"
 
+  }
 }
