@@ -16,6 +16,7 @@ export class HomePage implements OnInit {
       text: '',
       type: '',
       required: true,
+      answers:[ {id:'', text:''}]
     },
   ];
   constructor(
