@@ -38,7 +38,7 @@ export function LanguageLoader(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

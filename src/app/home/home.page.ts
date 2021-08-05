@@ -28,21 +28,40 @@ export class HomePage implements OnInit {
 
   deleteQuestion() {
     this.presentAlert();
-    this.reviewsQuestionsArray.pop();
+    // this.reviewsQuestionsArray.pop();
   }
 
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
       header: 'Προσοχή',
-      subHeader: 'Subtitle',
-      message: 'Είστε σίγουρος/η οτι θέλετε να διαγράψετε την ερώτηση',
-      buttons: ['Ναι', 'Ακύρωση'],
+      // subHeader: 'Subtitle',
+      message: 'Είστε σίγουρος/η οτι θέλετε να διαγράψετε την ερώτηση;',
+      buttons: [
+        {
+          text: 'Ναι',
+          role: 'confirm',
+          cssClass: 'secondary',
+          handler: () => {
+            this.reviewsQuestionsArray.pop();
+            console.log('Confirm Ναι');
+          },
+        },
+        {
+          text: 'Ακύρωση',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm cancel');
+          },
+        },
+      ],
     });
 
     await alert.present();
 
     const { role } = await alert.onDidDismiss();
+
     console.log('onDidDismiss resolved with role', role);
   }
 
@@ -64,7 +83,6 @@ export class HomePage implements OnInit {
     modal.onDidDismiss().then((data: any) => {
       this.reviewsQuestionsArray.push(data.data);
       console.log(this.reviewsQuestionsArray);
-
     });
     await modal.present();
   }
