@@ -5,7 +5,7 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": ["reviews-create-questionnaire/tsconfig.json"],
+        "project": ["tsconfig.json"],
         "createDefaultProgram": true
       },
       "extends": [

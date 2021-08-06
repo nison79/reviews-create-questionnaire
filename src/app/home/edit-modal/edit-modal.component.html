@@ -1,7 +1,62 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-title slot="start" class="title"></ion-title>
-      <ion-icon class="close-btn" slot="end" name="close-circle" (click)="closeModal()"></ion-icon>
-    </ion-toolbar>
-  </ion-header>
-  
+  <ion-toolbar>
+    <ion-title class="title" slot="start" class="title"
+      >Επεξεργασία Ερώτησης</ion-title
+    >
+
+    <ion-icon
+      class="close-btn"
+      slot="end"
+      name="close-circle"
+      (click)="closeModal()"
+    ></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="floating">Κείμενο Ερώτησης </ion-label>
+          <ion-input
+            [(ngModel)]="questionData.text"
+            type="text"
+            name="text"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Τύπος Ερώτησης </ion-label>
+          <ion-select>
+            <ion-select-option>Κείμενο</ion-select-option>
+            <ion-select-option>Μονή Επιλογή</ion-select-option>
+            <ion-select-option>Βαθμολογία με Αστέρια</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="questionData.type === 'radio'">
+          <ion-label position="floating">Γράψε τις Απαντήσεις</ion-label>
+          <ion-input [(ngModel)]="answerInEdit"></ion-input>
+          <ion-button
+            [disabled]="!answerInEdit"
+            (click)="addAnswers()"
+            (click)="clearInput()"
+            fill="clear"
+            slot="end"
+            ><ion-icon slot="icon-only" name="add"></ion-icon
+          ></ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Υποχρεωτική Ερώτηση </ion-label>
+          <ion-checkbox></ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="primary" (click)="editQuestion()">
+          Επιβεβαιωση
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

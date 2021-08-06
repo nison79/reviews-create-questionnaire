@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
+import { v4 as uuidv4 } from 'uuid';
+
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -18,19 +20,30 @@ export class AddModalComponent implements OnInit {
   };
   public answer;
 
-  constructor(private modalCtrl: ModalController , private translate: TranslateService) {}
+  public uniqueId;
+
+  constructor(
+    private modalCtrl: ModalController,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit() {}
 
   addQuestion() {
+    // assign the uuid to question.id
+    this.uniqueId = uuidv4();
+    this.question.id = this.uniqueId;
+    console.log(this.uniqueId);
+
+    // send the object this.question to the parent aka Home
     this.modalCtrl.dismiss(this.question);
     console.log(this.question);
-
   }
 
   addAnswers() {
-    this.question.answers.push({ id: 'dd', text: this.answer });
+    this.question.answers.push({ id: uuidv4(), text: this.answer });
   }
+
   removeAnswer() {
     this.question.answers.pop();
   }

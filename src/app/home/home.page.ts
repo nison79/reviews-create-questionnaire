@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
 import { TranslateService } from '@ngx-translate/core';
+import * as _ from 'lodash';
+
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-home',
@@ -10,28 +13,22 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  public reviewsQuestionsArray = [
-    {
-      id: '',
-      text: '',
-      type: '',
-      required: true,
-      answers:[ {id:'', text:''}]
-    },
-  ];
+  public reviewsQuestionsArray = [];
   constructor(
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private translate: TranslateService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   deleteQuestion() {
     this.presentAlert();
     // this.reviewsQuestionsArray.pop();
   }
 
+  //ALERT FUNCTION
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
@@ -66,11 +63,17 @@ export class HomePage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
   }
 
-  async openEditModal() {
+  async openEditModal(q) {
+
+
     const modal = await this.modalCtrl.create({
+
       component: EditModalComponent,
       animated: true,
-      componentProps: {},
+      componentProps: {
+        questionData: this.reviewsQuestionsArray,
+        itemId: q.id
+      },
     });
     await modal.present();
   }

@@ -23,8 +23,11 @@
     "@ionic/angular": "^5.5.2",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "@types/uuid": "^8.3.1",
+    "lodash": "^4.17.21",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
+    "uuid": "^8.3.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
