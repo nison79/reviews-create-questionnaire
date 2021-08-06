@@ -5,8 +5,6 @@ import { EditModalComponent } from './edit-modal/edit-modal.component';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
 
-import { v4 as uuidv4 } from 'uuid';
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -71,7 +69,7 @@ export class HomePage implements OnInit {
       component: EditModalComponent,
       animated: true,
       componentProps: {
-        questionData: this.reviewsQuestionsArray,
+        questionData: q,
         itemId: q.id
       },
     });
@@ -86,7 +84,7 @@ export class HomePage implements OnInit {
     });
     modal.onDidDismiss().then((data: any) => {
       this.reviewsQuestionsArray.push(data.data);
-      console.log(this.reviewsQuestionsArray);
+      console.log('REVIEWSQUESTIONSARRAY',this.reviewsQuestionsArray);
     });
     await modal.present();
   }

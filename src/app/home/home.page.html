@@ -17,13 +17,17 @@
     <ion-row>
       <ion-col>
         <ion-item *ngFor="let q of reviewsQuestionsArray">
-          <ion-label class="ion-text-wrap">{{q.text}}</ion-label>
-          <ion-label class="ion-text-wrap">{{q.type}}</ion-label>
-          <ion-label class="ion-text-wrap">{{q.required}}</ion-label>
-          <ion-button title="{{'reviews-create-questionnaire.edit' | translate}}" fill="clear" class="edit-btn" slot="end" (click)="openEditModal(q)"
-            ><ion-icon slot="icon-only" name="create-outline" ></ion-icon></ion-button
+          <div>
+            <ion-label class="ion-text-wrap">{{q.text}}</ion-label>
+            <ion-label class="ion-text-wrap">{{q.type}}</ion-label>
+          </div>
+
+          <ion-badge slot="end" class="ion-text-wrap">{{q.required}}</ion-badge>
+
+          <ion-button title="{{'reviews-create-questionnaire.edit' | translate }}" fill="clear" class="edit-btn" slot="end" (click)="openEditModal(q)"
+            ><ion-icon class="edit-icon" slot="icon-only" name="create-outline" ></ion-icon></ion-button
           >
-          <ion-button fill="clear" slot="end" (click)="deleteQuestion()"><ion-icon name="trash" slot="icon-only"></ion-icon></ion-button>
+          <ion-button fill="clear" slot="end" (click)="deleteQuestion()"><ion-icon class="edit-icon" name="trash" slot="icon-only"></ion-icon></ion-button>
         </ion-item>
       </ion-col>
     </ion-row>

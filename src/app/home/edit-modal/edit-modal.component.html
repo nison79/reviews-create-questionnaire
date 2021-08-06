@@ -27,10 +27,10 @@
         </ion-item>
         <ion-item>
           <ion-label position="floating">Τύπος Ερώτησης </ion-label>
-          <ion-select>
-            <ion-select-option>Κείμενο</ion-select-option>
-            <ion-select-option>Μονή Επιλογή</ion-select-option>
-            <ion-select-option>Βαθμολογία με Αστέρια</ion-select-option>
+          <ion-select [(ngModel)]="questionData.type">
+            <ion-select-option value="keimeno">Κείμενο</ion-select-option>
+            <ion-select-option value="radio">Μονή Επιλογή</ion-select-option>
+            <ion-select-option value="stars">Βαθμολογία με Αστέρια</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item *ngIf="questionData.type === 'radio'">
@@ -43,6 +43,12 @@
             fill="clear"
             slot="end"
             ><ion-icon slot="icon-only" name="add"></ion-icon
+          ></ion-button>
+        </ion-item>
+        <ion-item *ngFor="let ans of questionData.answers; let i = index">
+          <ion-label>{{ ans.text }}</ion-label>
+          <ion-button (click)="removeAnswer()"
+            ><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon
           ></ion-button>
         </ion-item>
         <ion-item>
