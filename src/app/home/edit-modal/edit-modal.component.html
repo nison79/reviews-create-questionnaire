@@ -28,7 +28,7 @@
         <ion-item>
           <ion-label position="floating">Τύπος Ερώτησης </ion-label>
           <ion-select [(ngModel)]="questionData.type">
-            <ion-select-option value="keimeno">Κείμενο</ion-select-option>
+            <ion-select-option value="text">Κείμενο</ion-select-option>
             <ion-select-option value="radio">Μονή Επιλογή</ion-select-option>
             <ion-select-option value="stars">Βαθμολογία με Αστέρια</ion-select-option>
           </ion-select>
@@ -47,19 +47,19 @@
         </ion-item>
         <ion-item *ngFor="let ans of questionData.answers; let i = index">
           <ion-label>{{ ans.text }}</ion-label>
-          <ion-button (click)="removeAnswer()"
+          <ion-button (click)="removeAnswer(i)"
             ><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon
           ></ion-button>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Υποχρεωτική Ερώτηση </ion-label>
-          <ion-checkbox></ion-checkbox>
+          <ion-checkbox [(ngModel)] = "questionData.required"></ion-checkbox>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button expand="block" color="primary" (click)="editQuestion()">
+        <ion-button expand="block" color="primary" (click)="saveEditedQuestion()">
           Επιβεβαιωση
         </ion-button>
       </ion-col>

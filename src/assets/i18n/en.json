@@ -1,10 +1,15 @@
 {
   "reviews-create-questionnaire": {
-    "questionnaire-management": "Διαχείριση Ερωτηματολογίου",
-    "create-question": "Δημιουργία Ερώτησης",
-    "write-question": "Γράψε την Ερώτηση",
-    "mandatory-question": "Υποχρεωτική Ερώτηση",
-    "select-type": "Επιλέξτε Τύπο Ερώτησης",
-    "stars": "Αστέρια"
+    "questionnaire-management": "Questionnaire Management",
+    "create-question": "Create Question",
+    "write-question": "Write A Question",
+    "mandatory-question": "Mandatory Question",
+    "select-type": "Select the type of Question",
+    "stars": "Star Rating",
+    "text": "Text",
+    "radio": "radio",
+    "write-answer": "Write your answers",
+    "save-answer" :"Save Question"
+
   }
 }

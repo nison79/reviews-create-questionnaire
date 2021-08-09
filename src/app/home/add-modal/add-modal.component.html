@@ -1,11 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title class="title" slot="start" class="title"
-      > {{'reviews-create-questionnaire.create-question' | translate}}</ion-title
+      > {{'reviews-create-questionnaire.create-question' | translate }}</ion-title
     >
     <ion-icon
       class="close-btn"
       slot="end"
+      color="primary"
       name="close-circle"
       (click)="closeModal()"
     ></ion-icon>
@@ -18,7 +19,7 @@
       <ion-col>
         <ion-list>
           <ion-item>
-            <ion-label position="floating">Γράψτε την ερώτηση σας...</ion-label>
+            <ion-label position="floating">{{'reviews-create-questionnaire.write-question' | translate }}</ion-label>
             <ion-input
               [(ngModel)]="question.text"
               type="text"
@@ -27,7 +28,7 @@
           </ion-item>
           <ion-item>
             <ion-label>
-              Υποχρεωτική ερώτηση
+              {{'reviews-create-questionnaire.mandatory-question' | translate }}
               <ion-checkbox
                 color="primary"
                 slot="end"
@@ -37,20 +38,20 @@
           </ion-item>
 
           <ion-item>
-            <ion-label position="floating">Επιλέξτε τύπο </ion-label>
+            <ion-label position="floating">{{'reviews-create-questionnaire.select-type' | translate }}</ion-label>
             <ion-select [(ngModel)]="question.type">
-              <ion-select-option value="keimeno"> Κείμενο </ion-select-option>
+              <ion-select-option value="text">{{'reviews-create-questionnaire.text' | translate }}</ion-select-option>
               <ion-select-option value="radio"
-                >Mονή επιλογή</ion-select-option
+                >{{'reviews-create-questionnaire.radio' | translate }}</ion-select-option
               >
               <ion-select-option value="stars"
-                >Βαθμολογία με Αστέρια</ion-select-option
+                >{{'reviews-create-questionnaire.stars' | translate }}</ion-select-option
               >
             </ion-select>
           </ion-item>
 
-          <ion-item *ngIf="question.type === 'radio'">
-            <ion-label position="floating">Γράψε τις Απαντήσεις</ion-label>
+          <ion-item *ngIf="question.type === 'Μονή επιλογή'">
+            <ion-label position="floating">{{'reviews-create-questionnaire.write-answer' | translate }}</ion-label>
             <ion-input [(ngModel)]="answer"></ion-input>
             <ion-button
               [disabled]="!answer"
@@ -74,7 +75,7 @@
     <ion-row>
       <ion-col>
         <ion-button expand="block" color="primary" (click)="addQuestion()">
-          Προσθηκη Ερωτησης
+          {{'reviews-create-questionnaire.save-answer' | translate }}
         </ion-button>
       </ion-col>
     </ion-row>

@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IonItemDivider, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { v4 as uuidv4 } from 'uuid';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-edit-modal',
@@ -20,15 +21,14 @@ export class EditModalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.questionData);
+    console.log('questionData', this.questionData);
   }
 
-  removeAnswer() {
-    this.questionData.answers.pop();
+  removeAnswer(i) {
+    console.log(this.questionData.answers);
   }
-
   addAnswers() {
-    this.questionData.answerInEdit.push({
+    this.questionData.answers.push({
       id: uuidv4(),
       text: this.answerInEdit,
     });
@@ -41,7 +41,7 @@ export class EditModalComponent implements OnInit {
     this.answerInEdit = null;
   }
 
-  editQuestion() {
+  saveEditedQuestion() {
     this.modalCtrl.dismiss(this.questionData);
   }
 }

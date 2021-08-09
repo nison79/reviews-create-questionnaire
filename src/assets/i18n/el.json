@@ -1,6 +1,15 @@
 {
   "reviews-create-questionnaire": {
-    "edit": "Edit",
-    "delete": "Delete"
+    "questionnaire-management": "Διαχείριση Ερωτηματολογίου",
+    "create-question": "Δημιουργία Ερώτησης",
+    "write-question": "Γράψε την Ερώτηση",
+    "mandatory-question": "Υποχρεωτική Ερώτηση",
+    "select-type": "Επιλέξτε Τύπο Ερώτησης",
+    "stars": "Βαθμολογία με Αστέρια",
+    "text": "Κείμενο",
+    "radio": "Μονή Επιλογή",
+    "write-answer": "Γράψε τις απαντήσεις",
+    "save-answer" :"Προσθήκη Ερώτησης",
+    "text-question": "Κείμενο Ερώτησης"
   }
 }

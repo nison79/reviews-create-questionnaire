@@ -14,7 +14,7 @@ export class AddModalComponent implements OnInit {
   public question = {
     id: '',
     text: '',
-    type: '',
+    type: 'text',
     required: true,
     answers: [],
   };
@@ -29,12 +29,23 @@ export class AddModalComponent implements OnInit {
 
   ngOnInit() {}
 
+  validation(){
+    if(!this.question.text){
+      return false;
+    }
+    if(this.question.type === 'radio'){
+      return false;
+    }
+  }
+
   addQuestion() {
     // assign the uuid to question.id
     this.uniqueId = uuidv4();
     this.question.id = this.uniqueId;
     console.log(this.uniqueId);
+    if (!this.question.text) {
 
+    }
     // send the object this.question to the parent aka Home
     this.modalCtrl.dismiss(this.question);
     console.log(this.question);

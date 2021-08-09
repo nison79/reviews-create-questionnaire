@@ -19,6 +19,7 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.translate.use('en');
   }
 
   deleteQuestion() {
@@ -30,10 +31,18 @@ export class HomePage implements OnInit {
   async presentAlert() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
-      header: 'Προσοχή',
+      header: 'Προσοχή!',
       // subHeader: 'Subtitle',
       message: 'Είστε σίγουρος/η οτι θέλετε να διαγράψετε την ερώτηση;',
       buttons: [
+        {
+          text: 'Ακύρωση',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm cancel');
+          },
+        },
         {
           text: 'Ναι',
           role: 'confirm',
@@ -41,14 +50,6 @@ export class HomePage implements OnInit {
           handler: () => {
             this.reviewsQuestionsArray.pop();
             console.log('Confirm Ναι');
-          },
-        },
-        {
-          text: 'Ακύρωση',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm cancel');
           },
         },
       ],
@@ -62,15 +63,12 @@ export class HomePage implements OnInit {
   }
 
   async openEditModal(q) {
-
-
     const modal = await this.modalCtrl.create({
-
       component: EditModalComponent,
       animated: true,
       componentProps: {
         questionData: q,
-        itemId: q.id
+        itemId: q.id,
       },
     });
     await modal.present();
@@ -83,8 +81,10 @@ export class HomePage implements OnInit {
       componentProps: {},
     });
     modal.onDidDismiss().then((data: any) => {
-      this.reviewsQuestionsArray.push(data.data);
-      console.log('REVIEWSQUESTIONSARRAY',this.reviewsQuestionsArray);
+      if (data && data.data) {
+        this.reviewsQuestionsArray.push(data.data);
+        console.log('REVIEWSQUESTIONSARRAY', this.reviewsQuestionsArray);
+      }
     });
     await modal.present();
   }
