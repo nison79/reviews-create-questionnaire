@@ -20,11 +20,11 @@
         <ion-item *ngFor="let q of reviewsQuestionsArray">
           <ion-label>
             <p>
-              Κείμενο ερώτησης:
+              {{ "reviews-create-questionnaire.question-text" | translate }}:
               <ion-text class="ion-text-wrap">{{q.text}}</ion-text>
             </p>
             <p>
-              Τύπος:
+              {{ "reviews-create-questionnaire.question-type" | translate }}:
               <ion-text
                 >{{"reviews-create-questionnaire." +q.type |
                 translate}}</ion-text
@@ -37,31 +37,33 @@
             fill="clear"
             class="edit-btn"
             slot="end"
-            (click)="openEditModal(q)"
-            ><ion-icon
+            (click)="openEditModal(q)">
+            <ion-icon
               class="edit-icon"
               slot="icon-only"
-              name="create-outline"
-            ></ion-icon
+              name="create-outline">
+              </ion-icon
           ></ion-button>
-          <ion-button fill="clear" slot="end" (click)="deleteQuestion()"
+          <ion-button fill="clear" slot="end" (click)="deleteQuestion(q.id)"
             ><ion-icon
               class="edit-icon"
               name="trash"
               slot="icon-only"
-            ></ion-icon
-          ></ion-button>
+            ></ion-icon>
+          </ion-button>
           <p>
             <ion-badge
               slot="start"
-              *ngIf="!q.required === false "
+              *ngIf="!q.required === false"
               slot="bottom"
               color="danger"
-              >Υποχρεωτική</ion-badge
-            >
+              >
+              {{ 'reviews-create-questionnaire.mandatory'| translate}}
+            </ion-badge>
           </p>
-        </ion-item>
+          </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+

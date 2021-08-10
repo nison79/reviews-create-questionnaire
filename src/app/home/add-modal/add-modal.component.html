@@ -1,7 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title class="title" slot="start" class="title"
-      > {{'reviews-create-questionnaire.create-question' | translate }}</ion-title
+    <ion-title class="title" slot="start" class="title">
+      {{
+        "reviews-create-questionnaire.create-question" | translate
+      }}</ion-title
     >
     <ion-icon
       class="close-btn"
@@ -19,21 +21,53 @@
       <ion-col>
         <ion-list>
           <ion-item>
-            <ion-label position="floating">{{'reviews-create-questionnaire.write-question' | translate }}</ion-label>
+            <div slot="start" style="padding-top: 12px">
+              <img
+                style="cursor: pointer; padding: 3px"
+                src="https://data.deliverymanager.gr/flag-el.png"
+                width="30px"
+                height="30px"
+              />
+              <img
+                style="cursor: pointer; padding: 3px"
+                src="https://data.deliverymanager.gr/flag-en.png"
+                width="30px"
+                height="30px"
+              />
+            </div>
+
+            <ion-label position="stacked">
+              {{
+                "reviews-create-questionnaire.write-question" | translate
+              }}</ion-label
+            >
+
             <ion-input
               [(ngModel)]="question.text"
-              (ionChange) = "validation()"
+              (ionChange)="validation()"
               type="text"
               name="text"
               #text="ngModel"
               required
             ></ion-input>
-
           </ion-item>
-          <p style="font-size: smaller; color:red;" *ngIf="(text.errors?.required && text.touched) || (!this.validationDoor.questionText) ">Παρακαλώ εισάγεται το κείμενο της ερώτησης</p>
+          <p
+            style="font-size: smaller; color: red; margin-left: 15px"
+            *ngIf="
+              (text.errors?.required && text.touched) ||
+              !this.validationDoor.questionText
+            "
+          >
+            {{
+              "reviews-create-questionnaire.please-enter-the-question"
+                | translate
+            }}
+          </p>
           <ion-item>
             <ion-label>
-              {{'reviews-create-questionnaire.mandatory-question' | translate }}
+              {{
+                "reviews-create-questionnaire.mandatory-question" | translate
+              }}
               <ion-checkbox
                 color="primary"
                 slot="end"
@@ -43,36 +77,53 @@
           </ion-item>
 
           <ion-item>
-            <ion-label position="floating">{{'reviews-create-questionnaire.select-type' | translate }}</ion-label>
+            <ion-label position="floating">{{
+              "reviews-create-questionnaire.select-type" | translate
+            }}</ion-label>
             <ion-select [(ngModel)]="question.type">
-              <ion-select-option value="text">{{'reviews-create-questionnaire.text' | translate }}</ion-select-option>
-              <ion-select-option value="radio"
-                >{{'reviews-create-questionnaire.radio' | translate }}</ion-select-option
-              >
-              <ion-select-option value="stars"
-                >{{'reviews-create-questionnaire.stars' | translate }}</ion-select-option
-              >
+              <ion-select-option value="text">{{
+                "reviews-create-questionnaire.text" | translate
+              }}</ion-select-option>
+              <ion-select-option value="radio">{{
+                "reviews-create-questionnaire.radio" | translate
+              }}</ion-select-option>
+              <ion-select-option value="stars">{{
+                "reviews-create-questionnaire.stars" | translate
+              }}</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item *ngIf="question.type === 'radio'">
-            <ion-label position="floating">{{'reviews-create-questionnaire.write-answer' | translate }}</ion-label>
-            <ion-input [(ngModel)]="answer" name="answerInput" #answerInput="ngModel" required></ion-input>
-            <p style="font-size: smaller; color:red;" *ngIf="(!this.validationDoor.answerText) || (answerInput.errors?.required && answerInput.touched) && (this.question.answers.length < 1)">Παρακαλώ εισάγεται τουλάχιστον μία προκαθορισμένη απάντηση</p>
+            <ion-label position="floating">{{
+              "reviews-create-questionnaire.write-answer" | translate
+            }}</ion-label>
+            <ion-input
+              [(ngModel)]="answer"
+              name="answerInput"
+              #answerInput="ngModel"
+            ></ion-input>
 
             <ion-button
               [disabled]="!answer"
               (click)="addAnswers()"
-              (ionChange) = "validation()"
+              (ionChange)="validation()"
               fill="clear"
               slot="end"
               ><ion-icon slot="icon-only" name="add"></ion-icon
             ></ion-button>
           </ion-item>
+          <p
+            style="font-size: smaller; color: red; margin-left: 15px"
+            *ngIf="!this.validationDoor.answerText"
+          >
+            {{
+              "reviews-create-questionnaire.radio-button-text-alert" | translate
+            }}
+          </p>
 
           <ion-item *ngFor="let ans of question.answers; let i = index">
             <ion-label>{{ ans.text }}</ion-label>
-            <ion-button (click)="removeAnswer()"
+            <ion-button (click)="removeAnswer(ans.id)"
               ><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon
             ></ion-button>
           </ion-item>
@@ -82,7 +133,7 @@
     <ion-row>
       <ion-col>
         <ion-button expand="block" color="primary" (click)="addQuestion()">
-          {{'reviews-create-questionnaire.save-question' | translate }}
+          {{ "reviews-create-questionnaire.save-question" | translate }}
         </ion-button>
       </ion-col>
     </ion-row>

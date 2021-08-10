@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { AddModalComponent } from './add-modal/add-modal.component';
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +13,45 @@ import * as _ from 'lodash';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  public reviewsQuestionsArray = [];
+  public insertObject: { text_translations: { el: string; en: string } };
+  // public newReviewsQuestionsArray: [];
+  public reviewsQuestionsArray = [
+    {
+      id: 'q_847130_0',
+      text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
+      text_translations: {
+        el: 'xronos etoimasias/paradoshs',
+        en: null,
+      },
+      stars: 0,
+      type: 'stars',
+      required: true,
+    },
+    {
+      id: 'q_847130_1',
+      text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
+
+      stars: 0,
+      type: 'stars',
+      required: true,
+    },
+    {
+      id: 'q_847130_2',
+      text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
+
+      stars: 0,
+      type: 'stars',
+      required: true,
+    },
+    {
+      id: 'q_847130_3',
+      text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
+
+      stars: 0,
+      type: 'stars',
+      required: true,
+    },
+  ];
   constructor(
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
@@ -20,23 +60,37 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.translate.use('en');
+    this.initialFunction();
+
+    console.log(this.reviewsQuestionsArray);
   }
 
-  deleteQuestion() {
-    this.presentAlert();
-    // this.reviewsQuestionsArray.pop();
+  deleteQuestion(i) {
+    this.presentAlert(i);
+
+    console.log('buttonworks');
+  }
+
+  initialFunction() {
+    if (!_.isEmpty(this.reviewsQuestionsArray)) {
+      _.each(this.reviewsQuestionsArray, (question) => {
+        question.text_translations = { el: question.text, en: null };
+      });
+    }
   }
 
   //ALERT FUNCTION
-  async presentAlert() {
+  async presentAlert(i) {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
-      header: 'Προσοχή!',
+      header: this.translate.instant('reviews-create-questionnaire.alert'),
       // subHeader: 'Subtitle',
-      message: 'Είστε σίγουρος/η οτι θέλετε να διαγράψετε την ερώτηση;',
+      message: this.translate.instant(
+        'reviews-create-questionnaire.delete-question'
+      ),
       buttons: [
         {
-          text: 'Ακύρωση',
+          text: this.translate.instant('reviews-create-questionnaire.cancel'),
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
@@ -44,11 +98,14 @@ export class HomePage implements OnInit {
           },
         },
         {
-          text: 'Ναι',
+          text: this.translate.instant('reviews-create-questionnaire.yes'),
           role: 'confirm',
           cssClass: 'secondary',
           handler: () => {
-            this.reviewsQuestionsArray.pop();
+            const indexItem = _.findIndex(this.reviewsQuestionsArray, {
+              id: i,
+            });
+            this.reviewsQuestionsArray.splice(indexItem, 1);
             console.log('Confirm Ναι');
           },
         },

@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { v4 as uuidv4 } from 'uuid';
 import * as _ from 'lodash';
 
+
 @Component({
   selector: 'app-edit-modal',
   templateUrl: './edit-modal.component.html',
@@ -14,6 +15,10 @@ export class EditModalComponent implements OnInit {
   @Input() itemId;
 
   public answerInEdit;
+  public validationDoor = {
+    questionText: true,
+    answerText: true,
+  };
 
   constructor(
     private modalCtrl: ModalController,
@@ -24,8 +29,30 @@ export class EditModalComponent implements OnInit {
     console.log('questionData', this.questionData);
   }
 
-  removeAnswer(i) {
-    console.log(this.questionData.answers);
+  validation() {
+    this.validationDoor.questionText = true;
+    this.validationDoor.answerText = true;
+    if (!this.questionData.text) {
+      this.validationDoor.questionText = false;
+    }
+    if (
+      this.questionData.type === 'radio' &&
+      _.isEmpty(this.questionData.answers)
+    ) {
+      this.validationDoor.answerText = false;
+    }
+  }
+
+  removeAnswer(id) {
+    // const indexItem = _.findIndex(this.questionData.answers,{id: i});
+    // this.questionData.answers.splice(indexItem
+    //   ,1);
+
+   this.questionData.answers =  _.reject(this.questionData.answers, (ans) => {
+      if (id === ans.id) {
+        return ans;
+      }
+    });
   }
   addAnswers() {
     this.questionData.answers.push({

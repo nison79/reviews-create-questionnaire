@@ -4,12 +4,24 @@
     "create-question": "Create Question",
     "write-question": "Write A Question",
     "mandatory-question": "Mandatory Question",
-    "select-type": "Select the type of Question",
+    "select-type": "Select the type of question",
     "stars": "Star Rating",
     "text": "Text",
-    "radio": "radio",
+    "radio": "Single Choice",
     "write-answer": "Write your answers",
-    "save-question" :"Save Question"
+    "save-question" :"Save Question",
+    "please-enter-the-question": "Please enter a question.",
+    "radio-button-text-alert": "Please enter at least one answer.",
+    "edit-question":"Edit Question",
+    "question-text": "Question text",
+    "question-type":"Type",
+    "confirm": "Confirm",
+    "mandatory": "Mandatory",
+    "alert": "Alert",
+    "delete-question": "Are you sure you want to delete this question?",
+    "cancel": "Cancel",
+    "yes": "OK"
+
 
   }
 }

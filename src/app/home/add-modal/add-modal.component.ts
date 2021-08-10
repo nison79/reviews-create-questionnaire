@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import * as _ from 'lodash';
 
 import { ModalController } from '@ionic/angular';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-add-modal',
@@ -20,6 +21,7 @@ export class AddModalComponent implements OnInit {
     answers: [],
   };
   public answer;
+  public currentLanguage;
 
   public uniqueId;
   public validationDoor = {
@@ -39,17 +41,14 @@ export class AddModalComponent implements OnInit {
     this.validationDoor.answerText = true;
     if (!this.question.text) {
       this.validationDoor.questionText = false;
-      return false;
-    } else if (
-      this.question.type === 'radio' &&
-      _.isEmpty(this.question.answers)
-    ) {
-      this.validationDoor.answerText = false;
-      return false;
-    } else {
-      return true;
     }
-    console.log('validation');
+    if (this.question.type === 'radio' && _.isEmpty(this.question.answers)) {
+      this.validationDoor.answerText = false;
+    }
+  }
+
+  setCurrentLangSelection() {
+    return !this.currentLanguage;
   }
 
   addQuestion() {
@@ -57,20 +56,21 @@ export class AddModalComponent implements OnInit {
     this.uniqueId = uuidv4();
     this.question.id = this.uniqueId;
 
-    const isValid = this.validation();
-    if (isValid) {
+    this.validation();
+    if (this.validationDoor.questionText && this.validationDoor.answerText) {
       this.modalCtrl.dismiss(this.question);
       console.log(this.question);
     }
   }
 
   addAnswers() {
-    this.validation();
     this.question.answers.push({ id: uuidv4(), text: this.answer });
+    this.validation();
+
     this.clearInput();
   }
 
-  removeAnswer() {
+  removeAnswer(id) {
     this.question.answers.pop();
   }
 
