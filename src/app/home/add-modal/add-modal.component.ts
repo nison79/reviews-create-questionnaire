@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { v4 as uuidv4 } from 'uuid';
+import * as _ from 'lodash';
 
 import { ModalController } from '@ionic/angular';
 
@@ -21,6 +22,10 @@ export class AddModalComponent implements OnInit {
   public answer;
 
   public uniqueId;
+  public validationDoor = {
+    questionText: true,
+    answerText: true,
+  };
 
   constructor(
     private modalCtrl: ModalController,
@@ -29,30 +34,40 @@ export class AddModalComponent implements OnInit {
 
   ngOnInit() {}
 
-  validation(){
-    if(!this.question.text){
+  validation() {
+    this.validationDoor.questionText = true;
+    this.validationDoor.answerText = true;
+    if (!this.question.text) {
+      this.validationDoor.questionText = false;
       return false;
-    }
-    if(this.question.type === 'radio'){
+    } else if (
+      this.question.type === 'radio' &&
+      _.isEmpty(this.question.answers)
+    ) {
+      this.validationDoor.answerText = false;
       return false;
+    } else {
+      return true;
     }
+    console.log('validation');
   }
 
   addQuestion() {
     // assign the uuid to question.id
     this.uniqueId = uuidv4();
     this.question.id = this.uniqueId;
-    console.log(this.uniqueId);
-    if (!this.question.text) {
 
+    const isValid = this.validation();
+    if (isValid) {
+      this.modalCtrl.dismiss(this.question);
+      console.log(this.question);
     }
-    // send the object this.question to the parent aka Home
-    this.modalCtrl.dismiss(this.question);
-    console.log(this.question);
   }
 
   addAnswers() {
+    this.validation();
     this.question.answers.push({ id: uuidv4(), text: this.answer });
+    this.clearInput();
   }
 
   removeAnswer() {

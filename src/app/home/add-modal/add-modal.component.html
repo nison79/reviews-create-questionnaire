@@ -22,10 +22,15 @@
             <ion-label position="floating">{{'reviews-create-questionnaire.write-question' | translate }}</ion-label>
             <ion-input
               [(ngModel)]="question.text"
+              (ionChange) = "validation()"
               type="text"
               name="text"
+              #text="ngModel"
+              required
             ></ion-input>
+
           </ion-item>
+          <p style="font-size: smaller; color:red;" *ngIf="(text.errors?.required && text.touched) || (!this.validationDoor.questionText) ">Παρακαλώ εισάγεται το κείμενο της ερώτησης</p>
           <ion-item>
             <ion-label>
               {{'reviews-create-questionnaire.mandatory-question' | translate }}
@@ -50,13 +55,15 @@
             </ion-select>
           </ion-item>
 
-          <ion-item *ngIf="question.type === 'Μονή επιλογή'">
+          <ion-item *ngIf="question.type === 'radio'">
             <ion-label position="floating">{{'reviews-create-questionnaire.write-answer' | translate }}</ion-label>
-            <ion-input [(ngModel)]="answer"></ion-input>
+            <ion-input [(ngModel)]="answer" name="answerInput" #answerInput="ngModel" required></ion-input>
+            <p style="font-size: smaller; color:red;" *ngIf="(!this.validationDoor.answerText) || (answerInput.errors?.required && answerInput.touched) && (this.question.answers.length < 1)">Παρακαλώ εισάγεται τουλάχιστον μία προκαθορισμένη απάντηση</p>
+
             <ion-button
               [disabled]="!answer"
               (click)="addAnswers()"
-              (click)="clearInput()"
+              (ionChange) = "validation()"
               fill="clear"
               slot="end"
               ><ion-icon slot="icon-only" name="add"></ion-icon
@@ -75,7 +82,7 @@
     <ion-row>
       <ion-col>
         <ion-button expand="block" color="primary" (click)="addQuestion()">
-          {{'reviews-create-questionnaire.save-answer' | translate }}
+          {{'reviews-create-questionnaire.save-question' | translate }}
         </ion-button>
       </ion-col>
     </ion-row>
