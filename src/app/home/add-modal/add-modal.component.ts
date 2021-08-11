@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 import * as _ from 'lodash';
 
 import { ModalController } from '@ionic/angular';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-add-modal',
@@ -17,11 +16,13 @@ export class AddModalComponent implements OnInit {
     id: '',
     text: '',
     type: 'text',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    text_translations: { el: '', en: '' },
     required: true,
     answers: [],
   };
   public answer;
-  public currentLanguage;
+  public currentLanguageText = 'el';
 
   public uniqueId;
   public validationDoor = {
@@ -47,8 +48,8 @@ export class AddModalComponent implements OnInit {
     }
   }
 
-  setCurrentLangSelection() {
-    return !this.currentLanguage;
+  setCurrentLanguageSelection(langCode) {
+    this.currentLanguageText = langCode;
   }
 
   addQuestion() {
@@ -71,7 +72,7 @@ export class AddModalComponent implements OnInit {
   }
 
   removeAnswer(id) {
-    this.question.answers.pop();
+    this.question.answers.splice(id, 1);
   }
 
   clearInput() {

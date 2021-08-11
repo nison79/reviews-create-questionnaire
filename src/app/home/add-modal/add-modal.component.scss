@@ -7,3 +7,14 @@
 .error-message {
   font-size: 0.7rem;
 }
+
+// classes for the flag 
+
+.borderToFlag {
+  border-bottom: 2px solid green;
+  opacity: 1;
+}
+
+.removeOpacity {
+  opacity: 0.5;
+}

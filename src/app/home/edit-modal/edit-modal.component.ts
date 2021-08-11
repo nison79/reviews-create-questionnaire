@@ -19,6 +19,7 @@ export class EditModalComponent implements OnInit {
     questionText: true,
     answerText: true,
   };
+  public currentLanguageText = 'el';
 
   constructor(
     private modalCtrl: ModalController,
@@ -42,6 +43,11 @@ export class EditModalComponent implements OnInit {
       this.validationDoor.answerText = false;
     }
   }
+  setCurrentLanguageSelection(langCode) {
+    this.currentLanguageText = langCode;
+    console.log(this.currentLanguageText);
+
+}
 
   removeAnswer(id) {
     // const indexItem = _.findIndex(this.questionData.answers,{id: i});

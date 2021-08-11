@@ -23,16 +23,22 @@
           <ion-item>
             <div slot="start" style="padding-top: 12px">
               <img
+                [ngClass]="[ currentLanguageText ===  'el' ? 'borderToFlag' : '' ,
+                currentLanguageText ==='en' ? 'removeOpacity' : '' ]"
                 style="cursor: pointer; padding: 3px"
                 src="https://data.deliverymanager.gr/flag-el.png"
                 width="30px"
                 height="30px"
+              (click) = "setCurrentLanguageSelection('el')"
               />
               <img
+              [ngClass]="[ currentLanguageText ===  'en' ? 'borderToFlag' : '',
+              currentLanguageText ==='el' ? 'removeOpacity' : '' ]"
                 style="cursor: pointer; padding: 3px"
                 src="https://data.deliverymanager.gr/flag-en.png"
                 width="30px"
                 height="30px"
+                (click) = "setCurrentLanguageSelection('en')"
               />
             </div>
 
@@ -43,7 +49,7 @@
             >
 
             <ion-input
-              [(ngModel)]="question.text"
+              [(ngModel)]="question.text_translations[currentLanguageText]"
               (ionChange)="validation()"
               type="text"
               name="text"

@@ -71,6 +71,7 @@ export class HomePage implements OnInit {
     console.log('buttonworks');
   }
 
+  // INITIAL FUNCTION FOR THE TRANS FLAG RENDERS ONINIT
   initialFunction() {
     if (!_.isEmpty(this.reviewsQuestionsArray)) {
       _.each(this.reviewsQuestionsArray, (question) => {
