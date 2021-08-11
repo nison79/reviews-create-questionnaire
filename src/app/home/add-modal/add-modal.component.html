@@ -47,8 +47,9 @@
                 "reviews-create-questionnaire.write-question" | translate
               }}</ion-label
             >
-
+   <!-- ngmodel now takes what is written in the question.text_translations via the currentLanguageText -->
             <ion-input
+
               [(ngModel)]="question.text_translations[currentLanguageText]"
               (ionChange)="validation()"
               type="text"

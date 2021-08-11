@@ -40,7 +40,7 @@ export class AddModalComponent implements OnInit {
   validation() {
     this.validationDoor.questionText = true;
     this.validationDoor.answerText = true;
-    if (!this.question.text) {
+    if (!this.question.text_translations.el && !this.question.text_translations.en) {
       this.validationDoor.questionText = false;
     }
     if (this.question.type === 'radio' && _.isEmpty(this.question.answers)) {
