@@ -24,7 +24,7 @@
           <div slot="start" style="padding-top: 12px">
             <img
               [ngClass]="[ currentLanguageText ===  'el' ? 'borderToFlag' : '' ,
-              currentLanguageText ==='en' ? 'removeOpacity' : '' ]"
+              !questionData.text_translations.el  ? 'removeOpacity' : '' ]"
               style="cursor: pointer; padding: 3px"
               src="https://data.deliverymanager.gr/flag-el.png"
               width="30px"
@@ -33,7 +33,7 @@
             />
             <img
             [ngClass]="[ currentLanguageText ===  'en' ? 'borderToFlag' : '',
-            currentLanguageText ==='el' ? 'removeOpacity' : '' ]"
+            !questionData.text_translations.en ? 'removeOpacity' : '' ]"
               style="cursor: pointer; padding: 3px"
               src="https://data.deliverymanager.gr/flag-en.png"
               width="30px"
@@ -46,7 +46,7 @@
               | translate
           }} </ion-label>
           <ion-input
-            [(ngModel)]="questionData.text"
+            [(ngModel)]="questionData.text_translations[currentLanguageText]"
             type="text"
             name="text"
             #text="ngModel"

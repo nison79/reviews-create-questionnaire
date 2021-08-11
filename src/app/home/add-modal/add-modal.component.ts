@@ -23,6 +23,7 @@ export class AddModalComponent implements OnInit {
   };
   public answer;
   public currentLanguageText = 'el';
+  public currentLanguageAnswer = 'el';
 
   public uniqueId;
   public validationDoor = {
@@ -40,32 +41,61 @@ export class AddModalComponent implements OnInit {
   validation() {
     this.validationDoor.questionText = true;
     this.validationDoor.answerText = true;
-    if (!this.question.text_translations.el && !this.question.text_translations.en) {
+    if (
+      !this.question.text_translations.el &&
+      !this.question.text_translations.en
+    ) {
       this.validationDoor.questionText = false;
     }
     if (this.question.type === 'radio' && _.isEmpty(this.question.answers)) {
       this.validationDoor.answerText = false;
     }
   }
-
+  //FOR THE TEXT INPUT
   setCurrentLanguageSelection(langCode) {
     this.currentLanguageText = langCode;
   }
 
+  //FOR THE ANSWERS INPUT
+  setCurrentLanguageAnswerSelection(langCode) {
+    this.currentLanguageAnswer = langCode;
+  }
+
+  createArray() {
+    console.log(this.question.type);
+
+    if (this.question.type === 'radio' && !this.question.answers) {
+      console.log('inside if');
+      this.question.answers = [];
+    }
+    if (
+      (this.question.type === 'text' || this.question.type === 'stars') &&
+      this.question.answers
+    ) {
+      console.log('questionData', this.question);
+      this.question = _.omit(this.question, ['answers']);
+    }
+    console.log('questionData', this.question);
+  }
+
   addQuestion() {
-    // assign the uuid to question.id
+    // assign the uuid to question
     this.uniqueId = uuidv4();
     this.question.id = this.uniqueId;
-
+    //validate
     this.validation();
     if (this.validationDoor.questionText && this.validationDoor.answerText) {
+      this.question.text = this.question.text_translations.el;
+      console.log(this.question);
+
+      //save with dismiss the object
       this.modalCtrl.dismiss(this.question);
       console.log(this.question);
     }
   }
 
   addAnswers() {
-    this.question.answers.push({ id: uuidv4(), text: this.answer });
+    this.question.answers.push({ id: uuidv4(), text: this.answer , text_translations:{el: this.answer , en:''});
     this.validation();
 
     this.clearInput();
@@ -81,6 +111,5 @@ export class AddModalComponent implements OnInit {
 
   closeModal() {
     this.modalCtrl.dismiss();
-    console.log(this.question);
   }
 }

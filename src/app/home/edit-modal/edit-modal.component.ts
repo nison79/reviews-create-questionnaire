@@ -48,15 +48,21 @@ export class EditModalComponent implements OnInit {
   }
 
   createArray() {
+    console.log(this.questionData.type);
+
     if (this.questionData.type === 'radio' && !this.questionData.answers) {
+      console.log('inside if');
       this.questionData.answers = [];
     }
     if (
-      (this.questionData.type === 'text' || 'stars') &&
+      (this.questionData.type === 'text' ||
+        this.questionData.type === 'stars') &&
       this.questionData.answers
     ) {
+      console.log('questionData', this.questionData);
       this.questionData = _.omit(this.questionData, ['answers']);
     }
+    console.log('questionData', this.questionData);
   }
 
   removeAnswer(id) {
@@ -85,6 +91,8 @@ export class EditModalComponent implements OnInit {
   }
 
   saveEditedQuestion() {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    this,this.questionData.text_translations.el = this.questionData.text;
     this.modalCtrl.dismiss(this.questionData);
     console.log(this.questionData);
   }

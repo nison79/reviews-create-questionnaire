@@ -48,8 +48,9 @@ export class HomePage implements OnInit {
       text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
 
       stars: 0,
-      type: 'stars',
+      type: 'radio',
       required: true,
+      answers:[{text:'hello'}]
     },
   ];
   constructor(
@@ -76,6 +77,11 @@ export class HomePage implements OnInit {
     if (!_.isEmpty(this.reviewsQuestionsArray)) {
       _.each(this.reviewsQuestionsArray, (question) => {
         question.text_translations = { el: question.text, en: null };
+        if (question.type === 'radio' && question.answers) {
+          _.each(question.answers, (answer) => {
+            answer.text_translations = { el: answer.text, en: null };
+          });
+        }
       });
     }
   }
