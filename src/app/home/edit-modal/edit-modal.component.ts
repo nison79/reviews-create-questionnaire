@@ -4,7 +4,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { v4 as uuidv4 } from 'uuid';
 import * as _ from 'lodash';
 
-
 @Component({
   selector: 'app-edit-modal',
   templateUrl: './edit-modal.component.html',
@@ -46,15 +45,26 @@ export class EditModalComponent implements OnInit {
   setCurrentLanguageSelection(langCode) {
     this.currentLanguageText = langCode;
     console.log(this.currentLanguageText);
+  }
 
-}
+  createArray() {
+    if (this.questionData.type === 'radio' && !this.questionData.answers) {
+      this.questionData.answers = [];
+    }
+    if (
+      (this.questionData.type === 'text' || 'stars') &&
+      this.questionData.answers
+    ) {
+      this.questionData = _.omit(this.questionData, ['answers']);
+    }
+  }
 
   removeAnswer(id) {
     // const indexItem = _.findIndex(this.questionData.answers,{id: i});
     // this.questionData.answers.splice(indexItem
     //   ,1);
 
-   this.questionData.answers =  _.reject(this.questionData.answers, (ans) => {
+    this.questionData.answers = _.reject(this.questionData.answers, (ans) => {
       if (id === ans.id) {
         return ans;
       }
@@ -76,5 +86,6 @@ export class EditModalComponent implements OnInit {
 
   saveEditedQuestion() {
     this.modalCtrl.dismiss(this.questionData);
+    console.log(this.questionData);
   }
 }

@@ -70,7 +70,7 @@
             "reviews-create-questionnaire.question-type"
               | translate
           }}</ion-label>
-          <ion-select [(ngModel)]="questionData.type">
+          <ion-select (ionChange) = "createArray()" [(ngModel)]="questionData.type">
             <ion-select-option value="text">{{
               "reviews-create-questionnaire.text"
                 | translate
