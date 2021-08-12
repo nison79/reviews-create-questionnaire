@@ -23,22 +23,26 @@
           <ion-item>
             <div slot="start" style="padding-top: 12px">
               <img
-                [ngClass]="[ currentLanguageText ===  'el' ? 'borderToFlag' : '' ,
-                !question.text_translations.el  ? 'removeOpacity' : ''  ]"
+                [ngClass]="[
+                  currentLanguageText === 'el' ? 'borderToFlag' : '',
+                  !question.text_translations.el ? 'removeOpacity' : ''
+                ]"
                 style="cursor: pointer; padding: 3px"
                 src="https://data.deliverymanager.gr/flag-el.png"
                 width="30px"
                 height="30px"
-              (click) = "setCurrentLanguageSelection('el')"
+                (click)="setCurrentLanguageSelection('el')"
               />
               <img
-              [ngClass]="[ currentLanguageText ===  'en' ? 'borderToFlag' : '',
-              !question.text_translations.en  ? 'removeOpacity' : ''  ]"
+                [ngClass]="[
+                  currentLanguageText === 'en' ? 'borderToFlag' : '',
+                  !question.text_translations.en ? 'removeOpacity' : ''
+                ]"
                 style="cursor: pointer; padding: 3px"
                 src="https://data.deliverymanager.gr/flag-en.png"
                 width="30px"
                 height="30px"
-                (click) = "setCurrentLanguageSelection('en')"
+                (click)="setCurrentLanguageSelection('en')"
               />
             </div>
 
@@ -47,9 +51,8 @@
                 "reviews-create-questionnaire.write-question" | translate
               }}</ion-label
             >
-   <!-- ngmodel now takes what is written in the question.text_translations via the currentLanguageText -->
+            <!-- ngmodel now takes what is written in the question.text_translations via the currentLanguageText -->
             <ion-input
-
               [(ngModel)]="question.text_translations[currentLanguageText]"
               (ionChange)="validation()"
               type="text"
@@ -87,7 +90,7 @@
             <ion-label position="floating">{{
               "reviews-create-questionnaire.select-type" | translate
             }}</ion-label>
-            <ion-select (ionChange) = "createArray()" [(ngModel)]="question.type">
+            <ion-select (ionChange)="createArray()" [(ngModel)]="question.type">
               <ion-select-option value="text">{{
                 "reviews-create-questionnaire.text" | translate
               }}</ion-select-option>
@@ -99,39 +102,37 @@
               }}</ion-select-option>
             </ion-select>
           </ion-item>
-
+          <!-- THE ANSWERS IN THE CREATE-ADD FUNCTIONALITY -->
           <ion-item *ngIf="question.type === 'radio'">
             <div slot="start" style="padding-top: 12px">
               <img
-                [ngClass]="[ currentLanguageAnswer ===  'el' ? 'borderToFlag' : '' ,
-                !question.text_translations.el  ? 'removeOpacity' : '' ]"
                 style="cursor: pointer; padding: 3px"
                 src="https://data.deliverymanager.gr/flag-el.png"
                 width="30px"
                 height="30px"
-              (click) = "setCurrentLanguageAnswerSelection('el')"
+                (click)="setCurrentLanguageAnswerSelection('el')"
               />
               <img
-              [ngClass]="[ currentLanguageAnswer ===  'en' ? 'borderToFlag' : '',
-              !question.text_translations.en ? 'removeOpacity' : '' ]"
                 style="cursor: pointer; padding: 3px"
                 src="https://data.deliverymanager.gr/flag-en.png"
                 width="30px"
                 height="30px"
-                (click) = "setCurrentLanguageAnswerSelection('en')"
+                (click)="setCurrentLanguageAnswerSelection('en')"
               />
             </div>
             <ion-label position="floating">{{
               "reviews-create-questionnaire.write-answer" | translate
             }}</ion-label>
             <ion-input
-            [(ngModel)]="question.text"
-              name="answerInput"
-              #answerInput="ngModel"
+              [(ngModel)]="answer[currentLanguageAnswer]"
+              name="answer"
             ></ion-input>
-
-            <ion-button
-              [disabled]="!answer"
+            <!-- ADD ANSWERS BUTTONS -->
+            <ion-button *ngIf="isEdited" fill="clear" slot="end" (click) = saveNewEditedAnswer()>
+              <ion-icon name="save" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="!isEdited"
+              [disabled]="!answer[currentLanguageAnswer]"
               (click)="addAnswers()"
               (ionChange)="validation()"
               fill="clear"
@@ -147,13 +148,32 @@
               "reviews-create-questionnaire.radio-button-text-alert" | translate
             }}
           </p>
+          <!-- THE BUTTON FOR REMOVE THE ANSWER -->
+          <div *ngFor="let ans of question.answers; let i = index">
+            <ion-item *ngIf="currentLanguageAnswer === 'el'">
+              <ion-label>{{ ans.text_translations.el }} </ion-label>
+              <!-- EDIT THE SAVED BUTTON IN GREEK -->
+              <ion-button (click)="editSavedAnswer(ans.id)">
+                <ion-icon name="create" slot="icon-only"></ion-icon>
+              </ion-button>
+              <!--  -->
+              <ion-button (click)="removeAnswer(ans.id)"
+                ><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon
+              ></ion-button>
+            </ion-item>
 
-          <ion-item *ngFor="let ans of question.answers; let i = index">
-            <ion-label>{{ ans.text }}</ion-label>
-            <ion-button (click)="removeAnswer(ans.id)"
-              ><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon
-            ></ion-button>
-          </ion-item>
+            <ion-item *ngIf="currentLanguageAnswer === 'en'">
+              <ion-label>{{ ans.text_translations.en }}</ion-label>
+              <!-- EDIT THE SAVED ANSWER BUTTON IN ENGLISH-->
+              <ion-button (click)="editSavedAnswer(ans.id)">
+                <ion-icon name="create" slot="icon-only"></ion-icon>
+              </ion-button>
+              <!--  -->
+              <ion-button (click)="removeAnswer(ans.id)"
+                ><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon
+              ></ion-button>
+            </ion-item>
+          </div>
         </ion-list>
       </ion-col>
     </ion-row>

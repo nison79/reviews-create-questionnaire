@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -21,7 +22,7 @@ export class AddModalComponent implements OnInit {
     required: true,
     answers: [],
   };
-  public answer;
+  public answer = { el: '', en: '' };
   public currentLanguageText = 'el';
   public currentLanguageAnswer = 'el';
 
@@ -30,6 +31,7 @@ export class AddModalComponent implements OnInit {
     questionText: true,
     answerText: true,
   };
+  public isEdited: boolean;
 
   constructor(
     private modalCtrl: ModalController,
@@ -51,12 +53,12 @@ export class AddModalComponent implements OnInit {
       this.validationDoor.answerText = false;
     }
   }
-  //FOR THE TEXT INPUT
+  //FOR THE TEXT INPUT SETS THE LANGUAGE CODE
   setCurrentLanguageSelection(langCode) {
     this.currentLanguageText = langCode;
   }
 
-  //FOR THE ANSWERS INPUT
+  //FOR THE ANSWERS INPUT SETS THE LANGUAGE CODE
   setCurrentLanguageAnswerSelection(langCode) {
     this.currentLanguageAnswer = langCode;
   }
@@ -95,18 +97,49 @@ export class AddModalComponent implements OnInit {
   }
 
   addAnswers() {
-    this.question.answers.push({ id: uuidv4(), text: this.answer , text_translations:{el: this.answer , en:''});
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    // let temp_text_translations;
+    // if (this.currentLanguageAnswer === 'el') {
+    //   temp_text_translations = { el: this.answer, en: '' };
+    // }
+    // if (this.currentLanguageAnswer === 'en') {
+    //   temp_text_translations = { el: '', en: this.answer };
+    // }
+    this.question.answers.push({
+      id: uuidv4(),
+      text: _.cloneDeep(this.answer.el),
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      text_translations: _.cloneDeep(this.answer),
+    });
     this.validation();
 
     this.clearInput();
+    console.log('from add answers', this.question);
+  }
+
+  editSavedAnswer(ID) {
+    // eslint-disable-next-line arrow-body-style
+    const editedAnswer = _.find(this.question.answers, { id: ID });
+    console.log(editedAnswer);
+
+    if (editedAnswer && editedAnswer.text_translations) {
+      this.answer = _.cloneDeep(editedAnswer.text_translations);
+    }
+
+    this.isEdited = true;
+  }
+
+  saveNewEditedAnswer() {
+    
   }
 
   removeAnswer(id) {
     this.question.answers.splice(id, 1);
+    this.isEdited = false;
   }
 
   clearInput() {
-    this.answer = null;
+    this.answer = { el: '', en: '' };
   }
 
   closeModal() {
