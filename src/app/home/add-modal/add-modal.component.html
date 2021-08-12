@@ -171,27 +171,40 @@
             <ion-item *ngIf="currentLanguageAnswer === 'el'">
               <div>
                 <ion-label>{{ ans.text_translations.el }} </ion-label>
-                <p class="alert-in-answers" *ngIf="!ans.text_translations.el">{{ "reviews-create-questionnaire.alert-in-answers" | translate}}</p>
+                <p class="alert-in-answers" *ngIf="!ans.text_translations.el">
+                  {{
+                    "reviews-create-questionnaire.alert-in-answers" | translate
+                  }}
+                </p>
               </div>
 
               <!-- EDIT THE SAVED BUTTON IN GREEK -->
-              <ion-button (click)="editSavedAnswer(ans.id)">
+              <ion-button (click)="editSavedAnswer(ans.id)" slot="end"  size="small">
                 <ion-icon name="create" slot="icon-only"></ion-icon>
               </ion-button>
               <!--  -->
-              <ion-button (click)="removeAnswer(ans.id)"
+              <ion-button (click)="removeAnswer(ans.id)" slot="end"
                 ><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon
               ></ion-button>
             </ion-item>
 
             <ion-item *ngIf="currentLanguageAnswer === 'en'">
+              <div>
+                <ion-label>{{ ans.text_translations.en }} </ion-label>
+                <p class="alert-in-answers" *ngIf="!ans.text_translations.en">
+                  {{
+                    "reviews-create-questionnaire.alert-in-answers2" | translate
+                  }}
+                </p>
+              </div>
+
               <ion-label>{{ ans.text_translations.en }}</ion-label>
               <!-- EDIT THE SAVED ANSWER BUTTON IN ENGLISH-->
-              <ion-button (click)="editSavedAnswer(ans.id)">
+              <ion-button (click)="editSavedAnswer(ans.id)" slot="end">
                 <ion-icon name="create" slot="icon-only"></ion-icon>
               </ion-button>
               <!--  -->
-              <ion-button (click)="removeAnswer(ans.id)"
+              <ion-button (click)="removeAnswer(ans.id)" slot="end"
                 ><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon
               ></ion-button>
             </ion-item>
@@ -199,7 +212,6 @@
         </ion-list>
       </ion-col>
     </ion-row>
-
   </ion-grid>
 </ion-content>
 
