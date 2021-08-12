@@ -5,7 +5,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 @Component({
   selector: 'app-home',

@@ -135,6 +135,7 @@
               [(ngModel)]="answer[currentLanguageAnswer]"
               name="answer"
             ></ion-input>
+
             <!-- ADD ANSWERS BUTTONS -->
             <ion-button
               *ngIf="isEdited"
@@ -155,6 +156,7 @@
               slot="end"
               ><ion-icon slot="icon-only" name="add"></ion-icon
             ></ion-button>
+            <p *ngIf="!this.answer"></p>
           </ion-item>
           <p
             style="font-size: smaller; color: red; margin-left: 15px"
@@ -167,7 +169,11 @@
           <!-- THE BUTTON FOR REMOVE THE ANSWER -->
           <div *ngFor="let ans of question.answers; let i = index">
             <ion-item *ngIf="currentLanguageAnswer === 'el'">
-              <ion-label>{{ ans.text_translations.el }} </ion-label>
+              <div>
+                <ion-label>{{ ans.text_translations.el }} </ion-label>
+                <p class="alert-in-answers" *ngIf="!ans.text_translations.el">{{ "reviews-create-questionnaire.alert-in-answers" | translate}}</p>
+              </div>
+
               <!-- EDIT THE SAVED BUTTON IN GREEK -->
               <ion-button (click)="editSavedAnswer(ans.id)">
                 <ion-icon name="create" slot="icon-only"></ion-icon>
@@ -193,6 +199,12 @@
         </ion-list>
       </ion-col>
     </ion-row>
+
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
     <ion-row>
       <ion-col>
         <ion-button expand="block" color="primary" (click)="addQuestion()">
@@ -201,4 +213,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
+</ion-footer>

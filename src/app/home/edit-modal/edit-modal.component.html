@@ -115,15 +115,19 @@
         </ion-item>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-button expand="block" color="primary" (click)="saveEditedQuestion()">
-          {{
-            "reviews-create-questionnaire.confirm"
-              | translate
-          }}
-        </ion-button>
-      </ion-col>
-    </ion-row>
+
   </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" color="primary" (click)="saveEditedQuestion()">
+        {{
+          "reviews-create-questionnaire.confirm"
+            | translate
+        }}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>
