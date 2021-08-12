@@ -8,7 +8,7 @@
   font-size: 0.7rem;
 }
 
-// classes for the flag 
+// classes for the flag
 
 .borderToFlag {
   border-bottom: 2px solid green;
@@ -17,4 +17,10 @@
 
 .removeOpacity {
   opacity: 0.5;
+}
+
+
+.flow{
+  
+  transition: ease-in 0.3s;
 }

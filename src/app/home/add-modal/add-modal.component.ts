@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -32,6 +33,7 @@ export class AddModalComponent implements OnInit {
     answerText: true,
   };
   public isEdited: boolean;
+  public currentEditedAnswer;
 
   constructor(
     private modalCtrl: ModalController,
@@ -124,13 +126,23 @@ export class AddModalComponent implements OnInit {
 
     if (editedAnswer && editedAnswer.text_translations) {
       this.answer = _.cloneDeep(editedAnswer.text_translations);
+      this.currentEditedAnswer = editedAnswer;
     }
 
     this.isEdited = true;
   }
 
   saveNewEditedAnswer() {
-    
+    const newIndex = _.findIndex(this.question.answers,{
+      id: this.currentEditedAnswer.id
+    });
+    this.question.answers[newIndex].text_translations =_.cloneDeep(this.answer);
+    this.question.answers[newIndex].text = _.cloneDeep(this.answer.el);
+    this.currentEditedAnswer = null;
+    this.isEdited = false;
+    console.log(newIndex);
+    console.log(this.question.answers);
+
   }
 
   removeAnswer(id) {

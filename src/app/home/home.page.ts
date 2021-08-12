@@ -60,7 +60,7 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.translate.use('en');
+    this.translate.use('el');
     this.initialFunction();
 
     console.log(this.reviewsQuestionsArray);
@@ -130,6 +130,7 @@ export class HomePage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: EditModalComponent,
       animated: true,
+      backdropDismiss:false,
       componentProps: {
         questionData: q,
         itemId: q.id,
@@ -142,6 +143,7 @@ export class HomePage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: AddModalComponent,
       animated: true,
+      backdropDismiss:false,
       componentProps: {},
     });
     modal.onDidDismiss().then((data: any) => {

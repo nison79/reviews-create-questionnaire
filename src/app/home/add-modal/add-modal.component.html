@@ -106,6 +106,10 @@
           <ion-item *ngIf="question.type === 'radio'">
             <div slot="start" style="padding-top: 12px">
               <img
+                [ngClass]="[
+                  currentLanguageAnswer === 'el' ? 'borderToFlag' : '',
+                  !answer.el ? 'removeOpacity' : ''
+                ]"
                 style="cursor: pointer; padding: 3px"
                 src="https://data.deliverymanager.gr/flag-el.png"
                 width="30px"
@@ -113,6 +117,10 @@
                 (click)="setCurrentLanguageAnswerSelection('el')"
               />
               <img
+                [ngClass]="[
+                  currentLanguageAnswer === 'en' ? 'borderToFlag' : '',
+                  !answer.en ? 'removeOpacity' : ''
+                ]"
                 style="cursor: pointer; padding: 3px"
                 src="https://data.deliverymanager.gr/flag-en.png"
                 width="30px"
@@ -128,10 +136,18 @@
               name="answer"
             ></ion-input>
             <!-- ADD ANSWERS BUTTONS -->
-            <ion-button *ngIf="isEdited" fill="clear" slot="end" (click) = saveNewEditedAnswer()>
+            <ion-button
+              *ngIf="isEdited"
+              fill="clear"
+              slot="end"
+              (click)="saveNewEditedAnswer()"
+              class="flow"
+            >
               <ion-icon name="save" slot="icon-only"></ion-icon>
             </ion-button>
-            <ion-button *ngIf="!isEdited"
+            <ion-button
+              *ngIf="!isEdited"
+              class="flow"
               [disabled]="!answer[currentLanguageAnswer]"
               (click)="addAnswers()"
               (ionChange)="validation()"
