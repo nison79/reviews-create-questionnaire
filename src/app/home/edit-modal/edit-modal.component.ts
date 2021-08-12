@@ -18,7 +18,9 @@ export class EditModalComponent implements OnInit {
     questionText: true,
     answerText: true,
   };
+  public answer = { el: '', en: '' };
   public currentLanguageText = 'el';
+  public currentLanguageAnswer = 'el';
 
   constructor(
     private modalCtrl: ModalController,
@@ -45,6 +47,10 @@ export class EditModalComponent implements OnInit {
   setCurrentLanguageSelection(langCode) {
     this.currentLanguageText = langCode;
     console.log(this.currentLanguageText);
+  }
+
+  setCurrentLanguageAnswersSelection(langCode) {
+    this.currentLanguageAnswer = langCode;
   }
 
   createArray() {
@@ -92,7 +98,7 @@ export class EditModalComponent implements OnInit {
 
   saveEditedQuestion() {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    this,this.questionData.text_translations.el = this.questionData.text;
+    this, (this.questionData.text_translations.el = this.questionData.text);
     this.modalCtrl.dismiss(this.questionData);
     console.log(this.questionData);
   }

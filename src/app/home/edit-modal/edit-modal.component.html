@@ -86,11 +86,31 @@
           </ion-select>
         </ion-item>
         <ion-item *ngIf="questionData.type === 'radio'">
+          <div slot="start" style="padding-top: 12px">
+            <img
+              [ngClass]="[ currentLanguageAnswer ===  'el' ? 'borderToFlag' : '' ,
+              !questionData.text_translations.el  ? 'removeOpacity' : '' ]"
+              style="cursor: pointer; padding: 3px"
+              src="https://data.deliverymanager.gr/flag-el.png"
+              width="30px"
+              height="30px"
+            (click) = "setCurrentLanguageAnswersSelection('el')"
+            />
+            <img
+            [ngClass]="[ currentLanguageAnswer ===  'en' ? 'borderToFlag' : '',
+            !questionData.text_translations.en ? 'removeOpacity' : '' ]"
+              style="cursor: pointer; padding: 3px"
+              src="https://data.deliverymanager.gr/flag-en.png"
+              width="30px"
+              height="30px"
+              (click) = "setCurrentLanguageAnswersSelection('en')"
+            />
+          </div>
           <ion-label position="floating">{{
             "reviews-create-questionnaire.write-answer"
               | translate
           }}</ion-label>
-          <ion-input [(ngModel)]="answerInEdit"></ion-input>
+          <ion-input [(ngModel)]="answer[currentLanguageAnswer]"></ion-input>
           <ion-button
             [disabled]="!answerInEdit"
             (click)="addAnswers()"

@@ -3,13 +3,14 @@
     <ion-title slot="start" class="ion-text-wrap">
       {{'reviews-create-questionnaire.questionnaire-management' | translate }}
     </ion-title>
-    <ion-icon
-      slot="end"
-      name="add-circle"
-      color="primary"
-      class="add-btn"
-      (click)="openAddModal()"
-    ></ion-icon>
+    <ion-button fill="clear" slot="end" size="large"  (click)="openAddModal()">
+      <ion-icon
+        slot="end"
+        name="add-circle"
+        color="primary"
+        class="add-btn"
+      ></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -37,12 +38,10 @@
             fill="clear"
             class="edit-btn"
             slot="end"
-            (click)="openEditModal(q)">
-            <ion-icon
-              class="edit-icon"
-              slot="icon-only"
-              name="create-outline">
-              </ion-icon
+            (click)="openEditModal(q)"
+          >
+            <ion-icon class="edit-icon" slot="icon-only" name="create-outline">
+            </ion-icon
           ></ion-button>
           <ion-button fill="clear" slot="end" (click)="deleteQuestion(q.id)"
             ><ion-icon
@@ -57,13 +56,12 @@
               *ngIf="!q.required === false"
               slot="bottom"
               color="danger"
-              >
+            >
               {{ 'reviews-create-questionnaire.mandatory'| translate}}
             </ion-badge>
           </p>
-          </ion-item>
+        </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
-
