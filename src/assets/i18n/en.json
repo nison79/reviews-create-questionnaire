@@ -26,8 +26,10 @@
     "question-in-greek-is-mandatory":"Question in Greek is mandatory",
     "delete-question-btn": "Delete question",
     "delete-answer-btn": "Delete answer",
-    "edit-question-btn": "Edit answer",
-    "close": "Close"
+    "edit-question-btn": "Edit question",
+    "edit-answer-btn": "Edit answer",
+    "close": "Close",
+    "add-answer": "Add answer"
 
 
 

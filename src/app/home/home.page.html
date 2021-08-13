@@ -3,7 +3,7 @@
     <ion-title slot="start" class="ion-text-wrap">
       {{'reviews-create-questionnaire.questionnaire-management' | translate }}
     </ion-title>
-    <ion-button fill="clear" slot="end" size="large"  (click)="openAddModal()">
+    <ion-button title="{{ 'reviews-create-questionnaire.create-question' | translate }}" fill="clear" slot="end" size="large"  (click)="openAddModal()">
       <ion-icon
         slot="end"
         name="add-circle"
@@ -34,7 +34,7 @@
           </ion-label>
 
           <ion-button
-            title="{{'reviews-create-questionnaire.edit' | translate }}"
+          title="{{ 'reviews-create-questionnaire.edit-question-btn' | translate }}"
             fill="clear"
             class="edit-btn"
             slot="end"
@@ -43,7 +43,7 @@
             <ion-icon class="edit-icon" slot="icon-only" name="create-outline">
             </ion-icon
           ></ion-button>
-          <ion-button fill="clear" slot="end" (click)="deleteQuestion(q.id)"
+          <ion-button fill="clear" slot="end" (click)="deleteQuestion(q.id)" title="{{ 'reviews-create-questionnaire.delete-question-btn' | translate }}" color="danger"
             ><ion-icon
               class="edit-icon"
               name="trash"

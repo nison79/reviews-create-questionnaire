@@ -5,7 +5,7 @@
         "reviews-create-questionnaire.create-question" | translate
       }}</ion-title
     >
-    <ion-button fill="clear" slot="end" size="large" (click)="closeModal()">
+    <ion-button fill="clear" slot="end" size="large" (click)="closeModal()" title="{{ 'close' | translate }}">
       <ion-icon
         slot="end"
         name="close"
@@ -157,6 +157,7 @@
             </ion-button>
 
             <ion-button
+            title="{{ 'reviews-create-questionnaire.add-answer' | translate }}"
               *ngIf="!isEdited"
               class="flow"
               [disabled]="!answer[currentLanguageAnswer]"
@@ -190,6 +191,7 @@
 
               <!-- EDIT THE SAVED BUTTON IN GREEK -->
               <ion-button
+              title="{{ 'reviews-create-questionnaire.add-answer' | translate }}"
                 (click)="editSavedAnswer(ans.id)"
                 slot="end"
                 size="small"
@@ -198,7 +200,7 @@
                 <ion-icon name="create-outline"  slot="icon-only"></ion-icon>
               </ion-button>
               <!--  -->
-              <ion-button (click)="removeAnswer(ans.id)" slot="end" color="danger" fill="clear"
+              <ion-button (click)="removeAnswer(ans.id)" slot="end" color="danger" fill="clear" title="{{ 'reviews-create-questionnaire.delete-answer-btn' | translate }}"
                 ><ion-icon name="trash-outline" slot="icon-only" ></ion-icon
               ></ion-button>
             </ion-item>
@@ -219,7 +221,7 @@
                 <ion-icon name="create-outline" slot="icon-only"></ion-icon>
               </ion-button>
               <!--  -->
-              <ion-button (click)="removeAnswer(ans.id)" slot="end" color="danger" fill="clear"
+              <ion-button (click)="removeAnswer(ans.id)" slot="end" color="danger" fill="clear" title="{{ 'reviews-create-questionnaire.delete-answer-btn' | translate }}"
                 ><ion-icon name="trash-outline" slot="icon-only" ></ion-icon
               ></ion-button>
             </ion-item>
@@ -234,7 +236,7 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button expand="block" color="primary" (click)="addQuestion()">
+        <ion-button expand="block" color="primary" (click)="addQuestion()" title="{{ 'reviews-create-questionnaire.save-question' | translate }}">
           {{ "reviews-create-questionnaire.save-question" | translate }}
         </ion-button>
       </ion-col>

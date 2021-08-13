@@ -1,4 +1,5 @@
 {
+
   "reviews-create-questionnaire": {
     "questionnaire-management": "Διαχείριση Ερωτηματολογίου",
     "create-question": "Δημιουργία Ερώτησης",
@@ -27,8 +28,10 @@
     "question-in-greek-is-mandatory": "Η ερώτηση στα ελληνικά είναι υποχρεωτική",
     "delete-question-btn": "Διαγραφή Ερώτησης",
     "delete-answer-btn": "Διαγραφή Απάντησης",
-    "edit-question-btn": "Επεξεργασία Απάντησης",
-    "close": "Κλείσιμο"
+    "edit-question-btn": "Επεξεργασία Ερώτησης",
+    "close": "Κλείσιμο",
+    "add-answer": "Πρόσθεσε την απάντηση",
+    "edit-answer-btn": "Επεξεργασία Απάντησης"
 
 
   }
