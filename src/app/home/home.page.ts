@@ -5,7 +5,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
-
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +30,6 @@ export class HomePage implements OnInit {
     // {
     //   id: 'q_847130_1',
     //   text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
-
     //   stars: 0,
     //   type: 'stars',
     //   required: true,
@@ -38,7 +37,6 @@ export class HomePage implements OnInit {
     // {
     //   id: 'q_847130_2',
     //   text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
-
     //   stars: 0,
     //   type: 'stars',
     //   required: true,
@@ -46,7 +44,6 @@ export class HomePage implements OnInit {
     // {
     //   id: 'q_847130_3',
     //   text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
-
     //   stars: 0,
     //   type: 'radio',
     //   required: true,
@@ -126,32 +123,42 @@ export class HomePage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
   }
 
-  async openEditModal(q) {
+  async openEditModal(selectedQuestion) {
     const modal = await this.modalCtrl.create({
       component: EditModalComponent,
       animated: true,
-      backdropDismiss:false,
+      backdropDismiss: false,
       componentProps: {
-        questionData: q,
-        itemId: q.id,
+        questionData: _.cloneDeep(selectedQuestion),
       },
     });
     await modal.present();
+    modal.onDidDismiss().then((data: any) => {
+      if (data && data.data) {
+        const question = _.cloneDeep(data.data);
+        console.log('question', question);
+        console.log('array', this.reviewsQuestionsArray);
+        const newIndex = _.findIndex(this.reviewsQuestionsArray, { id: question.id });
+
+        this.reviewsQuestionsArray[newIndex] = question;
+        console.log('REVIEWSQUESTIONSARRAY', this.reviewsQuestionsArray);
+      }
+    });
   }
 
   async openAddModal() {
     const modal = await this.modalCtrl.create({
       component: AddModalComponent,
       animated: true,
-      backdropDismiss:false,
+      backdropDismiss: false,
       componentProps: {},
     });
+    await modal.present();
     modal.onDidDismiss().then((data: any) => {
       if (data && data.data) {
-        this.reviewsQuestionsArray.push(data.data);
+        this.reviewsQuestionsArray.push(_.cloneDeep(data.data));
         console.log('REVIEWSQUESTIONSARRAY', this.reviewsQuestionsArray);
       }
     });
-    await modal.present();
   }
 }

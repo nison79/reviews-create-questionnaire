@@ -12,7 +12,7 @@ import * as _ from 'lodash';
 })
 export class EditModalComponent implements OnInit {
   @Input() questionData;
-  @Input() itemId;
+
 
   public answerInEdit;
   public validationDoor = {
