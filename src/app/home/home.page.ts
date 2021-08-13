@@ -60,7 +60,7 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.translate.use('el');
+    this.translate.use('en');
     this.initialFunction();
 
     console.log(this.reviewsQuestionsArray);

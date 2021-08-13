@@ -22,7 +22,8 @@
     "cancel": "Cancel",
     "yes": "OK",
     "alert-in-answers": "Traslation in Greek is missing",
-    "alert-in-answers2": "Translation in English is missing"
+    "alert-in-answers2": "Translation in English is missing",
+    "question-in-greek-is-mandatory":"Question in Greek is mandatory"
 
 
   }

@@ -45,16 +45,16 @@ export class AddModalComponent implements OnInit {
   validation() {
     this.validationDoor.questionText = true;
     this.validationDoor.answerText = true;
-    if (
-      !this.question.text_translations.el &&
-      !this.question.text_translations.en
-    ) {
+
+    if (_.isEmpty(this.question.text_translations.el)) {
       this.validationDoor.questionText = false;
     }
+
     if (this.question.type === 'radio' && _.isEmpty(this.question.answers)) {
       this.validationDoor.answerText = false;
     }
   }
+
   //FOR THE TEXT INPUT SETS THE LANGUAGE CODE
   setCurrentLanguageSelection(langCode) {
     this.currentLanguageText = langCode;
@@ -88,7 +88,11 @@ export class AddModalComponent implements OnInit {
     this.question.id = this.uniqueId;
     //validate
     this.validation();
-    if (this.validationDoor.questionText && this.validationDoor.answerText) {
+    if (
+      this.validationDoor.questionText &&
+      this.validationDoor.answerText &&
+      this.question.text_translations.el
+    ) {
       this.question.text = this.question.text_translations.el;
       console.log(this.question);
 
@@ -133,16 +137,17 @@ export class AddModalComponent implements OnInit {
   }
 
   saveNewEditedAnswer() {
-    const newIndex = _.findIndex(this.question.answers,{
-      id: this.currentEditedAnswer.id
+    const newIndex = _.findIndex(this.question.answers, {
+      id: this.currentEditedAnswer.id,
     });
-    this.question.answers[newIndex].text_translations =_.cloneDeep(this.answer);
+    this.question.answers[newIndex].text_translations = _.cloneDeep(
+      this.answer
+    );
     this.question.answers[newIndex].text = _.cloneDeep(this.answer.el);
     this.currentEditedAnswer = null;
     this.isEdited = false;
     console.log(newIndex);
     console.log(this.question.answers);
-
   }
 
   removeAnswer(id) {

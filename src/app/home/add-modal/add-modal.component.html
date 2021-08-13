@@ -58,13 +58,13 @@
               type="text"
               name="text"
               #text="ngModel"
-              required
+              [class]= "!this.validationDoor.questionText ? 'ng-invalid' : 'ng-valid'"
             ></ion-input>
           </ion-item>
           <p
             style="font-size: smaller; color: red; margin-left: 15px"
             *ngIf="
-              (text.errors?.required && text.touched) ||
+
               !this.validationDoor.questionText
             "
           >
@@ -72,6 +72,17 @@
               "reviews-create-questionnaire.please-enter-the-question"
                 | translate
             }}
+          </p>
+          <p
+            *ngIf="
+
+              !this.validationDoor.questionText
+            "
+            style="font-size: 14px; color: red; margin-left: 15px"
+          >
+          {{
+            "reviews-create-questionnaire.question-in-greek-is-mandatory" | translate
+          }}
           </p>
           <ion-item>
             <ion-label>
@@ -179,7 +190,11 @@
               </div>
 
               <!-- EDIT THE SAVED BUTTON IN GREEK -->
-              <ion-button (click)="editSavedAnswer(ans.id)" slot="end"  size="small">
+              <ion-button
+                (click)="editSavedAnswer(ans.id)"
+                slot="end"
+                size="small"
+              >
                 <ion-icon name="create" slot="icon-only"></ion-icon>
               </ion-button>
               <!--  -->
