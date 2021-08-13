@@ -48,10 +48,11 @@
           </ion-label>
           <ion-input
             [(ngModel)]="questionData.text_translations[currentLanguageText]"
+            (ionChange)="validation()"
             type="text"
             name="text"
             #text="ngModel"
-            required
+
             [class]="
               !this.validationDoor.questionText ? 'ng-invalid' : 'ng-valid'
             "
@@ -65,7 +66,7 @@
           "
         >
           {{
-            "reviews-create-questionnaire.please-enter-the-question" | translate
+            "reviews-create-questionnaire.question-in-greek-is-mandatory" | translate
           }}
         </p>
         <ion-item>
@@ -118,7 +119,7 @@
           <ion-input
             [(ngModel)]="answer[currentLanguageAnswer]"
             name="answer"
-            required
+
           ></ion-input>
 
           <!-- ADD ANSWERS BUTTONS -->

@@ -23,7 +23,12 @@
     "yes": "OK",
     "alert-in-answers": "Traslation in Greek is missing",
     "alert-in-answers2": "Translation in English is missing",
-    "question-in-greek-is-mandatory":"Question in Greek is mandatory"
+    "question-in-greek-is-mandatory":"Question in Greek is mandatory",
+    "delete-question-btn": "Delete question",
+    "delete-answer-btn": "Delete answer",
+    "edit-question-btn": "Edit answer",
+    "close": "Close"
+
 
 
   }

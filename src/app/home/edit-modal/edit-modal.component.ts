@@ -13,7 +13,6 @@ import * as _ from 'lodash';
 export class EditModalComponent implements OnInit {
   @Input() questionData;
 
-
   public answerInEdit;
   public validationDoor = {
     questionText: true,
@@ -38,10 +37,6 @@ export class EditModalComponent implements OnInit {
     this.validationDoor.questionText = true;
     this.validationDoor.answerText = true;
 
-    if (!this.questionData.text) {
-      this.validationDoor.questionText = false;
-    }
-
     if (_.isEmpty(this.questionData.text_translations.el)) {
       this.validationDoor.questionText = false;
     }
@@ -53,6 +48,7 @@ export class EditModalComponent implements OnInit {
       this.validationDoor.answerText = false;
     }
   }
+
   setCurrentLanguageSelection(langCode) {
     this.currentLanguageText = langCode;
   }
@@ -140,7 +136,12 @@ export class EditModalComponent implements OnInit {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     this.questionData.text = this.questionData.text_translations.el;
     this.validation();
-    this.modalCtrl.dismiss(this.questionData);
-    console.log('FROM THE SAVED EDITED', this.questionData);
+    if (
+      this.validationDoor.questionText &&
+      this.validationDoor.answerText &&
+      this.questionData.text_translations.el
+    ) {
+      this.modalCtrl.dismiss(this.questionData);
+    }
   }
 }

@@ -98,7 +98,6 @@ export class AddModalComponent implements OnInit {
 
       //save with dismiss the object
       this.modalCtrl.dismiss(this.question);
-      console.log(this.question);
     }
   }
 

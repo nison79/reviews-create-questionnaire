@@ -24,7 +24,12 @@
     "yes": "Ναι",
     "alert-in-answers": "Δεν υπάρχει μετάφραση στα ελληνικά",
     "alert-in-answers2":"Δεν υπάρχει μετάφραση στα αγγλικά",
-    "question-in-greek-is-mandatory": "Η ερώτηση στα ελληνικά είναι υποχρεωτική"
+    "question-in-greek-is-mandatory": "Η ερώτηση στα ελληνικά είναι υποχρεωτική",
+    "delete-question-btn": "Διαγραφή Ερώτησης",
+    "delete-answer-btn": "Διαγραφή Απάντησης",
+    "edit-question-btn": "Επεξεργασία Απάντησης",
+    "close": "Κλείσιμο"
+
 
   }
 }
