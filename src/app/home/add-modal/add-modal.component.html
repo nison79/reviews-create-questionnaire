@@ -5,13 +5,14 @@
         "reviews-create-questionnaire.create-question" | translate
       }}</ion-title
     >
-    <ion-icon
-      class="close-btn"
-      slot="end"
-      color="primary"
-      name="close-circle"
-      (click)="closeModal()"
-    ></ion-icon>
+    <ion-button fill="clear" slot="end" size="large" (click)="closeModal()">
+      <ion-icon
+        slot="end"
+        name="close"
+        color="primary"
+        class="add-btn"
+      ></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -58,15 +59,14 @@
               type="text"
               name="text"
               #text="ngModel"
-              [class]= "!this.validationDoor.questionText ? 'ng-invalid' : 'ng-valid'"
+              [class]="
+                !this.validationDoor.questionText ? 'ng-invalid' : 'ng-valid'
+              "
             ></ion-input>
           </ion-item>
           <p
             style="font-size: smaller; color: red; margin-left: 15px"
-            *ngIf="
-
-              !this.validationDoor.questionText
-            "
+            *ngIf="!this.validationDoor.questionText"
           >
             {{
               "reviews-create-questionnaire.please-enter-the-question"
@@ -74,15 +74,13 @@
             }}
           </p>
           <p
-            *ngIf="
-
-              !this.validationDoor.questionText
-            "
+            *ngIf="!this.validationDoor.questionText"
             style="font-size: 14px; color: red; margin-left: 15px"
           >
-          {{
-            "reviews-create-questionnaire.question-in-greek-is-mandatory" | translate
-          }}
+            {{
+              "reviews-create-questionnaire.question-in-greek-is-mandatory"
+                | translate
+            }}
           </p>
           <ion-item>
             <ion-label>
@@ -157,6 +155,7 @@
             >
               <ion-icon name="save" slot="icon-only"></ion-icon>
             </ion-button>
+
             <ion-button
               *ngIf="!isEdited"
               class="flow"

@@ -1,7 +1,7 @@
 .close-btn{
     padding:1rem;
     font-size:30px;
-    color:rgb(255, 196, 0);
+    color:rgb(0, 81, 255);
 }
 
 //classes for the flags
@@ -15,3 +15,20 @@
   opacity: 0.5;
 }
 
+
+
+
+.flow{
+
+  transition: ease-in 0.3s;
+}
+
+.bigger-button-alert{
+  transform: scale(1.5);
+  transition: ease-in 0.5s;
+}
+
+.alert-in-answers{
+  font-size:small;
+  color:red;
+}

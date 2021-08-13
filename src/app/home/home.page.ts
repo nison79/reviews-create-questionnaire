@@ -16,42 +16,42 @@ export class HomePage implements OnInit {
   public insertObject: { text_translations: { el: string; en: string } };
   // public newReviewsQuestionsArray: [];
   public reviewsQuestionsArray = [
-    {
-      id: 'q_847130_0',
-      text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
-      text_translations: {
-        el: 'xronos etoimasias/paradoshs',
-        en: null,
-      },
-      stars: 0,
-      type: 'stars',
-      required: true,
-    },
-    {
-      id: 'q_847130_1',
-      text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
+    // {
+    //   id: 'q_847130_0',
+    //   text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
+    //   text_translations: {
+    //     el: 'xronos etoimasias/paradoshs',
+    //     en: null,
+    //   },
+    //   stars: 0,
+    //   type: 'stars',
+    //   required: true,
+    // },
+    // {
+    //   id: 'q_847130_1',
+    //   text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
 
-      stars: 0,
-      type: 'stars',
-      required: true,
-    },
-    {
-      id: 'q_847130_2',
-      text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
+    //   stars: 0,
+    //   type: 'stars',
+    //   required: true,
+    // },
+    // {
+    //   id: 'q_847130_2',
+    //   text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
 
-      stars: 0,
-      type: 'stars',
-      required: true,
-    },
-    {
-      id: 'q_847130_3',
-      text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
+    //   stars: 0,
+    //   type: 'stars',
+    //   required: true,
+    // },
+    // {
+    //   id: 'q_847130_3',
+    //   text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
 
-      stars: 0,
-      type: 'radio',
-      required: true,
-      answers:[{text:'hello'}]
-    },
+    //   stars: 0,
+    //   type: 'radio',
+    //   required: true,
+    //   answers:[{text:'hello'}]
+    // },
   ];
   constructor(
     private modalCtrl: ModalController,

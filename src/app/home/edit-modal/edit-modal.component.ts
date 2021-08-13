@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
@@ -21,6 +22,8 @@ export class EditModalComponent implements OnInit {
   public answer = { el: '', en: '' };
   public currentLanguageText = 'el';
   public currentLanguageAnswer = 'el';
+  public isEdited: boolean;
+  public currentEditedAnswer;
 
   constructor(
     private modalCtrl: ModalController,
@@ -34,9 +37,15 @@ export class EditModalComponent implements OnInit {
   validation() {
     this.validationDoor.questionText = true;
     this.validationDoor.answerText = true;
+
     if (!this.questionData.text) {
       this.validationDoor.questionText = false;
     }
+
+    if (_.isEmpty(this.questionData.text_translations.el)) {
+      this.validationDoor.questionText = false;
+    }
+
     if (
       this.questionData.type === 'radio' &&
       _.isEmpty(this.questionData.answers)
@@ -46,7 +55,6 @@ export class EditModalComponent implements OnInit {
   }
   setCurrentLanguageSelection(langCode) {
     this.currentLanguageText = langCode;
-    console.log(this.currentLanguageText);
   }
 
   setCurrentLanguageAnswersSelection(langCode) {
@@ -85,21 +93,54 @@ export class EditModalComponent implements OnInit {
   addAnswers() {
     this.questionData.answers.push({
       id: uuidv4(),
-      text: this.answerInEdit,
+      text: _.cloneDeep(this.answer.el),
+      text_translations: _.cloneDeep(this.answer),
     });
+
+    this.validation();
+    this.clearInput();
+  }
+
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  editSavedAnswer(ID) {
+    // eslint-disable-next-line arrow-body-style
+    const editedAnswer = _.find(this.questionData.answers, { id: ID });
+    console.log(editedAnswer);
+
+    if (editedAnswer && editedAnswer.text_translations) {
+      this.answer = _.cloneDeep(editedAnswer.text_translations);
+      this.currentEditedAnswer = editedAnswer;
+    }
+
+    this.isEdited = true;
   }
 
   closeModal() {
     this.modalCtrl.dismiss();
   }
   clearInput() {
-    this.answerInEdit = null;
+    this.answer = { el: '', en: '' };
+  }
+
+  saveNewEditedAnswer() {
+    const newIndex = _.findIndex(this.questionData.answers, {
+      id: this.currentEditedAnswer.id,
+    });
+    this.questionData.answers[newIndex].text_translations = _.cloneDeep(
+      this.answer
+    );
+    this.questionData.answers[newIndex].text = _.cloneDeep(this.answer.el);
+    this.currentEditedAnswer = null;
+    this.isEdited = false;
+    console.log(newIndex);
+    console.log(this.questionData.answers);
   }
 
   saveEditedQuestion() {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    this, (this.questionData.text_translations.el = this.questionData.text);
+    this.questionData.text = this.questionData.text_translations.el;
+    this.validation();
     this.modalCtrl.dismiss(this.questionData);
-    console.log(this.questionData);
+    console.log('FROM THE SAVED EDITED', this.questionData);
   }
 }

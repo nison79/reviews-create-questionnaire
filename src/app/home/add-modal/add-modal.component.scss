@@ -25,6 +25,11 @@
   transition: ease-in 0.3s;
 }
 
+.bigger-button-alert{
+  transform: scale(1.5);
+  transition: ease-in 0.5s;
+}
+
 .alert-in-answers{
   font-size:small;
   color:red;

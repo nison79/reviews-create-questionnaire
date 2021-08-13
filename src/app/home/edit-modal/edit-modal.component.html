@@ -1,18 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title class="title" slot="start" class="title"
-      >{{
-        "reviews-create-questionnaire.edit-question"
-          | translate
-      }}</ion-title
-    >
-
-    <ion-icon
-      class="close-btn"
-      slot="end"
-      name="close-circle"
-      (click)="closeModal()"
-    ></ion-icon>
+    <ion-title class="title" slot="start" class="title">{{
+      "reviews-create-questionnaire.edit-question" | translate
+    }}</ion-title>
+    <ion-button fill="clear" slot="end" size="large" (click)="closeModal()">
+      <ion-icon
+        slot="end"
+        name="close"
+        color="primary"
+        class="add-btn"
+      ></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -23,119 +21,192 @@
         <ion-item>
           <div slot="start" style="padding-top: 12px">
             <img
-              [ngClass]="[ currentLanguageText ===  'el' ? 'borderToFlag' : '' ,
-              !questionData.text_translations.el  ? 'removeOpacity' : '' ]"
+              [ngClass]="[
+                currentLanguageText === 'el' ? 'borderToFlag' : '',
+                !questionData.text_translations.el ? 'removeOpacity' : ''
+              ]"
               style="cursor: pointer; padding: 3px"
               src="https://data.deliverymanager.gr/flag-el.png"
               width="30px"
               height="30px"
-            (click) = "setCurrentLanguageSelection('el')"
+              (click)="setCurrentLanguageSelection('el')"
             />
             <img
-            [ngClass]="[ currentLanguageText ===  'en' ? 'borderToFlag' : '',
-            !questionData.text_translations.en ? 'removeOpacity' : '' ]"
+              [ngClass]="[
+                currentLanguageText === 'en' ? 'borderToFlag' : '',
+                !questionData.text_translations.en ? 'removeOpacity' : ''
+              ]"
               style="cursor: pointer; padding: 3px"
               src="https://data.deliverymanager.gr/flag-en.png"
               width="30px"
               height="30px"
-              (click) = "setCurrentLanguageSelection('en')"
+              (click)="setCurrentLanguageSelection('en')"
             />
           </div>
-          <ion-label position="stacked">{{
-            "reviews-create-questionnaire.question-text"
-              | translate
-          }} </ion-label>
+          <ion-label position="stacked"
+            >{{ "reviews-create-questionnaire.question-text" | translate }}
+          </ion-label>
           <ion-input
             [(ngModel)]="questionData.text_translations[currentLanguageText]"
             type="text"
             name="text"
             #text="ngModel"
             required
+            [class]="
+              !this.validationDoor.questionText ? 'ng-invalid' : 'ng-valid'
+            "
           ></ion-input>
         </ion-item>
         <p
-            style="font-size: smaller; color: red; margin-left: 15px"
-            *ngIf="
-              (text.errors?.required && text.touched) ||
-              !this.validationDoor.questionText
-            "
-          >
-            {{
-              "reviews-create-questionnaire.please-enter-the-question"
-                | translate
-            }}
-          </p>
+          style="font-size: smaller; color: red; margin-left: 15px"
+          *ngIf="
+            !this.validationDoor.questionText ||
+            (text.errors?.required && text.touched)
+          "
+        >
+          {{
+            "reviews-create-questionnaire.please-enter-the-question" | translate
+          }}
+        </p>
         <ion-item>
           <ion-label position="floating">{{
-            "reviews-create-questionnaire.question-type"
-              | translate
+            "reviews-create-questionnaire.question-type" | translate
           }}</ion-label>
-          <ion-select (ionChange) = "createArray()" [(ngModel)]="questionData.type">
+          <ion-select
+            (ionChange)="createArray()"
+            [(ngModel)]="questionData.type"
+          >
             <ion-select-option value="text">{{
-              "reviews-create-questionnaire.text"
-                | translate
+              "reviews-create-questionnaire.text" | translate
             }}</ion-select-option>
             <ion-select-option value="radio">{{
-              "reviews-create-questionnaire.radio"
-                | translate
+              "reviews-create-questionnaire.radio" | translate
             }}</ion-select-option>
             <ion-select-option value="stars">{{
-              "reviews-create-questionnaire.stars"
-                | translate
+              "reviews-create-questionnaire.stars" | translate
             }}</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item *ngIf="questionData.type === 'radio'">
           <div slot="start" style="padding-top: 12px">
             <img
-              [ngClass]="[ currentLanguageAnswer ===  'el' ? 'borderToFlag' : '' ,
-              !questionData.text_translations.el  ? 'removeOpacity' : '' ]"
+              [ngClass]="[
+                currentLanguageAnswer === 'el' ? 'borderToFlag' : '',
+                !questionData.text_translations.el ? 'removeOpacity' : ''
+              ]"
               style="cursor: pointer; padding: 3px"
               src="https://data.deliverymanager.gr/flag-el.png"
               width="30px"
               height="30px"
-            (click) = "setCurrentLanguageAnswersSelection('el')"
+              (click)="setCurrentLanguageAnswersSelection('el')"
             />
             <img
-            [ngClass]="[ currentLanguageAnswer ===  'en' ? 'borderToFlag' : '',
-            !questionData.text_translations.en ? 'removeOpacity' : '' ]"
+              [ngClass]="[
+                currentLanguageAnswer === 'en' ? 'borderToFlag' : '',
+                !questionData.text_translations.en ? 'removeOpacity' : ''
+              ]"
               style="cursor: pointer; padding: 3px"
               src="https://data.deliverymanager.gr/flag-en.png"
               width="30px"
               height="30px"
-              (click) = "setCurrentLanguageAnswersSelection('en')"
+              (click)="setCurrentLanguageAnswersSelection('en')"
             />
           </div>
           <ion-label position="floating">{{
-            "reviews-create-questionnaire.write-answer"
-              | translate
+            "reviews-create-questionnaire.write-answer" | translate
           }}</ion-label>
-          <ion-input [(ngModel)]="answer[currentLanguageAnswer]"></ion-input>
+          <ion-input
+            [(ngModel)]="answer[currentLanguageAnswer]"
+            name="answer"
+            required
+          ></ion-input>
+
+          <!-- ADD ANSWERS BUTTONS -->
           <ion-button
-            [disabled]="!answerInEdit"
-            (click)="addAnswers()"
-            (click)="clearInput()"
+            *ngIf="isEdited"
             fill="clear"
             slot="end"
+            (click)="saveNewEditedAnswer()"
+            class="flow"
+          >
+            <ion-icon name="save" slot="icon-only"></ion-icon>
+          </ion-button>
+
+          <ion-button
+            *ngIf="!isEdited"
+            [disabled]="!answer[currentLanguageAnswer]"
+            (click)="addAnswers()"
+            (click)="clearInput()"
+            (ionChange)="validation()"
+            fill="clear"
+            slot="end"
+            class="flow"
             ><ion-icon slot="icon-only" name="add"></ion-icon
           ></ion-button>
+          <p *ngIf="this.answer"></p>
         </ion-item>
-        <ion-item *ngFor="let ans of questionData.answers; let i = index">
-          <ion-label>{{ ans.text }}</ion-label>
-          <ion-button (click)="removeAnswer(ans.id)"
-            ><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon
-          ></ion-button>
-        </ion-item>
+        <p
+          style="font-size: smaller; color: red; margin-left: 15px"
+          *ngIf="!this.validationDoor.answerText"
+        >
+          {{
+            "reviews-create-questionnaire.radio-button-text-alert" | translate
+          }}
+        </p>
+        <!-- THE BUTTON FOR REMOVE THE ANSWER -->
+        <div *ngFor="let ans of questionData.answers; let i = index">
+          <ion-item *ngIf="currentLanguageAnswer === 'el'">
+            <div>
+              <ion-label>{{ ans.text_translations.el }} </ion-label>
+              <p class="alert-in-answers" *ngIf="!ans.text_translations.el">
+                {{
+                  "reviews-create-questionnaire.alert-in-answers" | translate
+                }}
+              </p>
+            </div>
+
+            <!-- EDIT THE SAVED BUTTON IN GREEK -->
+            <ion-button
+              (click)="editSavedAnswer(ans.id)"
+              slot="end"
+              size="small"
+            >
+              <ion-icon name="create" slot="icon-only"></ion-icon>
+            </ion-button>
+            <!--  -->
+            <ion-button (click)="removeAnswer(ans.id)" slot="end"
+              ><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon
+            ></ion-button>
+          </ion-item>
+          <ion-item *ngIf="currentLanguageAnswer === 'en'">
+            <div>
+              <ion-label>{{ ans.text_translations.en }} </ion-label>
+              <p class="alert-in-answers" *ngIf="!ans.text_translations.en">
+                {{
+                  "reviews-create-questionnaire.alert-in-answers2" | translate
+                }}
+              </p>
+            </div>
+
+            <!-- EDIT THE SAVED ANSWER BUTTON IN ENGLISH-->
+            <ion-button (click)="editSavedAnswer(ans.id)" slot="end">
+              <ion-icon name="create" slot="icon-only"></ion-icon>
+            </ion-button>
+            <!--  -->
+            <ion-button (click)="removeAnswer(ans.id)" slot="end"
+              ><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon
+            ></ion-button>
+          </ion-item>
+        </div>
+
         <ion-item>
           <ion-label position="floating">{{
-            "reviews-create-questionnaire.mandatory-question"
-              | translate
+            "reviews-create-questionnaire.mandatory-question" | translate
           }}</ion-label>
-          <ion-checkbox [(ngModel)] = "questionData.required"></ion-checkbox>
+          <ion-checkbox [(ngModel)]="questionData.required"></ion-checkbox>
         </ion-item>
       </ion-col>
     </ion-row>
-
   </ion-grid>
 </ion-content>
 
@@ -143,10 +214,7 @@
   <ion-row>
     <ion-col>
       <ion-button expand="block" color="primary" (click)="saveEditedQuestion()">
-        {{
-          "reviews-create-questionnaire.confirm"
-            | translate
-        }}
+        {{ "reviews-create-questionnaire.confirm" | translate }}
       </ion-button>
     </ion-col>
   </ion-row>
