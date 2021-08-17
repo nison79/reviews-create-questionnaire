@@ -3,7 +3,13 @@
     <ion-title class="title" slot="start" class="title">{{
       "reviews-create-questionnaire.edit-question" | translate
     }}</ion-title>
-    <ion-button fill="clear" slot="end" size="large" (click)="closeModal()" title="{{ 'reviews-create-questionnaire.close' | translate }}">
+    <ion-button
+      fill="clear"
+      slot="end"
+      size="large"
+      (click)="closeModal()"
+      title="{{ 'reviews-create-questionnaire.close' | translate }}"
+    >
       <ion-icon
         slot="end"
         name="close"
@@ -52,7 +58,6 @@
             type="text"
             name="text"
             #text="ngModel"
-
             [class]="
               !this.validationDoor.questionText ? 'ng-invalid' : 'ng-valid'
             "
@@ -66,7 +71,8 @@
           "
         >
           {{
-            "reviews-create-questionnaire.question-in-greek-is-mandatory" | translate
+            "reviews-create-questionnaire.question-in-greek-is-mandatory"
+              | translate
           }}
         </p>
         <ion-item>
@@ -119,11 +125,11 @@
           <ion-input
             [(ngModel)]="answer[currentLanguageAnswer]"
             name="answer"
-
           ></ion-input>
 
           <!-- ADD ANSWERS BUTTONS -->
           <ion-button
+            title="{{ 'reviews-create-questionnaire.add-answer' | translate }}"
             *ngIf="isEdited"
             fill="clear"
             slot="end"
@@ -134,7 +140,7 @@
           </ion-button>
 
           <ion-button
-          title="{{ 'reviews-create-questionnaire.delete-answer-btn' | translate }"}
+            title="{{ 'reviews-create-questionnaire.delete-answer-btn' | translate }"
             *ngIf="!isEdited"
             [disabled]="!answer[currentLanguageAnswer]"
             (click)="addAnswers()"
@@ -169,7 +175,9 @@
 
             <!-- EDIT THE SAVED BUTTON IN GREEK -->
             <ion-button
-            title="{{ 'reviews-create-questionnaire.edit-answer-btn' | translate }}"
+              title="{{
+                'reviews-create-questionnaire.edit-answer-btn' | translate
+              }}"
               (click)="editSavedAnswer(ans.id)"
               slot="end"
               size="small"
@@ -178,8 +186,15 @@
               <ion-icon name="create-outline" s slot="icon-only"></ion-icon>
             </ion-button>
             <!--  -->
-            <ion-button (click)="removeAnswer(ans.id)" slot="end" fill="clear"  color="danger" title="{{ 'reviews-create-questionnaire.delete-answer-btn' | translate }}"
-              ><ion-icon name="trash-outline" slot="icon-only" ></ion-icon
+            <ion-button
+              (click)="removeAnswer(ans.id)"
+              slot="end"
+              fill="clear"
+              color="danger"
+              title="{{
+                'reviews-create-questionnaire.delete-answer-btn' | translate
+              }}"
+              ><ion-icon name="trash-outline" slot="icon-only"></ion-icon
             ></ion-button>
           </ion-item>
           <ion-item *ngIf="currentLanguageAnswer === 'en'">
@@ -193,11 +208,23 @@
             </div>
 
             <!-- EDIT THE SAVED ANSWER BUTTON IN ENGLISH-->
-            <ion-button (click)="editSavedAnswer(ans.id)" slot="end" fill="clear" title="{{ 'reviews-create-questionnaire.edit-answer-btn' | translate }}" >
-              <ion-icon  name="create-outline" slot="icon-only"></ion-icon>
+            <ion-button
+              (click)="editSavedAnswer(ans.id)"
+              slot="end"
+              fill="clear"
+              title="{{
+                'reviews-create-questionnaire.edit-answer-btn' | translate
+              }}"
+            >
+              <ion-icon name="create-outline" slot="icon-only"></ion-icon>
             </ion-button>
             <!--  -->
-            <ion-button (click)="removeAnswer(ans.id)" slot="end" title="{{ 'reviews-create-questionnaire.delete-answer-btn' | translate }}"
+            <ion-button
+              (click)="removeAnswer(ans.id)"
+              slot="end"
+              title="{{
+                'reviews-create-questionnaire.delete-answer-btn' | translate
+              }}"
               ><ion-icon name="trash" slot="icon-only" fill="clear"></ion-icon
             ></ion-button>
           </ion-item>
