@@ -5,7 +5,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { EditModalComponent } from './edit-modal/edit-modal.component';
 import { TranslateService } from '@ngx-translate/core';
 import * as _ from 'lodash';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 @Component({
   selector: 'app-home',
@@ -15,41 +15,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class HomePage implements OnInit {
   public insertObject: { text_translations: { el: string; en: string } };
   // public newReviewsQuestionsArray: [];
-  public reviewsQuestionsArray = [
-    // {
-    //   id: 'q_847130_0',
-    //   text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
-    //   text_translations: {
-    //     el: 'xronos etoimasias/paradoshs',
-    //     en: null,
-    //   },
-    //   stars: 0,
-    //   type: 'stars',
-    //   required: true,
-    // },
-    // {
-    //   id: 'q_847130_1',
-    //   text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
-    //   stars: 0,
-    //   type: 'stars',
-    //   required: true,
-    // },
-    // {
-    //   id: 'q_847130_2',
-    //   text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
-    //   stars: 0,
-    //   type: 'stars',
-    //   required: true,
-    // },
-    // {
-    //   id: 'q_847130_3',
-    //   text: 'ΧΡΟΝΟΣ ΕΤΟΙΜΑΣΙΑΣ/ΠΑΡΑΔΟΣΗΣ',
-    //   stars: 0,
-    //   type: 'radio',
-    //   required: true,
-    //   answers:[{text:'hello'}]
-    // },
-  ];
+  public reviewsQuestionsArray = [];
   constructor(
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
@@ -138,7 +104,9 @@ export class HomePage implements OnInit {
         const question = _.cloneDeep(data.data);
         console.log('question', question);
         console.log('array', this.reviewsQuestionsArray);
-        const newIndex = _.findIndex(this.reviewsQuestionsArray, { id: question.id });
+        const newIndex = _.findIndex(this.reviewsQuestionsArray, {
+          id: question.id,
+        });
 
         this.reviewsQuestionsArray[newIndex] = question;
         console.log('REVIEWSQUESTIONSARRAY', this.reviewsQuestionsArray);
